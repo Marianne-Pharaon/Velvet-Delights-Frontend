@@ -1,0 +1,9 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    height: 20px;
+}
+.logo{
+  flex:1
+}
