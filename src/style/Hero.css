@@ -1,0 +1,29 @@
+.w-screen{
+    background-image: url('C:\Users\CompuTop\Desktop\Velvet Delights\velvet-delights\src\Images\header.png');  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6%;
+}
+.button{
+    border: 3px solid ;
+    border-color: rgb(187, 0, 9);
+    width: 150px;
+    height: 40px;
+    color: rgb(187, 0, 9);
+    margin-bottom: 15%;
+    font-family: 'Oooh Baby', sans-serif;
+    font-weight: bold;
+    font-size: x-large;
+
+}
+.button:hover{
+    background-color:  rgb(187, 0, 9);
+    cursor: pointer;
+    color: white;
+}
