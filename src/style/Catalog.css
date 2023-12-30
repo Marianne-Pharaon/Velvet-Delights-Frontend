@@ -1,0 +1,87 @@
+.maincatalog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height:fit-content;
+    margin-bottom: 10%;
+
+}
+.title{
+    flex: 1;
+    font-family: 'Oooh Baby', sans-serif;
+font-size: 54px;
+margin-top: 18px;
+text-align: center;
+    
+}
+.ulc {
+    list-style-type: circle; 
+  }
+
+.orderbutton{
+    width: 50%;
+    height: 50px;
+    font-family: 'Oooh Baby', sans-serif;
+    border: 2px solid ;
+    border-color: white;
+    background-color: transparent;
+    margin-bottom: 10%;
+
+}
+.orderbutton:hover{
+    background-color: rgb(215, 109, 114);
+
+
+}
+.firstdiv{
+    flex: 1;
+    background-color: rgb(187, 0, 9);
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    width: 70%;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: 3%; */
+    
+    
+}
+.text{
+    text-align: center;
+    margin-bottom: 18%;
+}
+.catblock{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+}
+.catimgs{
+    flex:2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.row1{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+.row2{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+}
+.imgsize{
+    width: 30%;
+    height:190px;
+    margin-bottom: 7%;
+    margin-right: 3%;
+}
