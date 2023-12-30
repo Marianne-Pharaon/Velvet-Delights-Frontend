@@ -4,8 +4,13 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'Oooh+Baby': ['Oooh Baby', 'sans-serif'],
+        'outfit': ['Outfit', 'serif'],
+      },
+    },
   },
+  variants: {},
   plugins: [],
-}
-
+};

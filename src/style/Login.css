@@ -1,0 +1,159 @@
+.registerdiv{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    background-image: url('C:\Users\CompuTop\Desktop\Velvet Delights\velvet-delights\src\Images\login1.jpg');  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    
+}
+
+.loginborder{
+    border: 3px solid ;
+    border-color: rgb(187, 0, 9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:300px;
+    height:400px;
+    border-radius: 80px 80px;
+    margin-left: 60px;
+
+
+}
+.redLineInput {
+    border-bottom: 2px solid rgb(187, 0, 9);
+    padding: 5px; 
+    outline: none;
+    margin-top: 6%; 
+    background-color: transparent;
+    width: 250px;
+  }
+  .redLineInput::placeholder {
+    color:  rgb(187, 0, 9);
+  }
+  .loginbutton{
+    border: 3px solid ;
+    border-color: rgb(187, 0, 9); 
+    font-family: 'Oooh Baby', sans-serif;
+    width: 40%;
+    height:40px;
+    margin-top: 12%;
+    color: rgb(187, 0, 9); 
+    font-size: 28px;
+    font-weight: 600;
+
+   
+
+  }
+  .phrase{
+    color:  rgb(187, 0, 9);
+    margin-top: 10%;
+    font-weight: 600;
+
+  }
+  .logintitle{
+    font-family: 'Oooh Baby', sans-serif;
+    color:  rgb(187, 0, 9);
+    font-size: 60px;
+    margin-top: 3%;
+  }
+  .reglink{
+    font-family: 'Oooh Baby', sans-serif;
+    color:  rgb(187, 0, 9);
+    font-size: 22px;
+    text-decoration: underline;
+    margin-left: 2px;
+
+  }
+  .logindiv{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    background-image: url('C:\Users\CompuTop\Desktop\Velvet Delights\velvet-delights\src\Images\register.jpg');  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    
+}
+
+.registerborder{
+    border: 3px solid ;
+    border-color: rgb(187, 0, 9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:400px;
+    height:580px;
+    border-radius: 80px 80px;
+    margin-right: 90px;
+
+
+}
+@media (max-width: 500px) {
+    .registerdiv{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        background-image: none;  
+            height: 600px;
+        
+    }
+    
+    .loginborder{
+     
+        border: 3px solid ;
+        border-color: rgb(187, 0, 9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width:290px;
+        height:400px;
+        border-radius: 80px 80px;
+        margin-left: 0;
+    
+    
+    }
+    .redLineInput {
+        border-bottom: 2px solid rgb(187, 0, 9);
+        padding: 5px; 
+        outline: none;
+        margin-top: 6%; 
+        background-color: transparent;
+        width: 200px;
+      }
+      
+     
+    
+      .logindiv{
+     
+        
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        background-image: none;  
+            height: 600px;
+    }
+    
+    .registerborder{
+        border: 3px solid ;
+        border-color: rgb(187, 0, 9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width:290px;
+        height:580px;
+        border-radius: 80px 80px;
+        margin-right: 0px !important;
+        margin-top: 20%;
+    
+    
+    }
+}

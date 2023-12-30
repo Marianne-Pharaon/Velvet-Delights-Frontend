@@ -7,8 +7,12 @@ import Chocolate from '../Images/chocolate.jpg';
 import '../style/review.css'; // Assuming this path is correct
 
 const Reviews = () => {
+  const componentStyle = {
+    backgroundColor: 'rgb(248, 248, 248)',
+  };
+
   const carouselItemStyle = {
-    height: '400px',
+    height: '500px',
   };
 
   const imageStyle = {
@@ -18,7 +22,7 @@ const Reviews = () => {
   };
 
   return (
-    <div style={carouselItemStyle}>
+    <div style={{ ...componentStyle, ...carouselItemStyle }}>
       <div className='revdiv'>
         <span className='reviewstitle'>Reviews</span>
       </div>
