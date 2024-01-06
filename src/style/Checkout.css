@@ -1,0 +1,153 @@
+.cbody {
+    font-family: 'Outfit', serif;
+    font-size: 24px;
+    padding: 8px;
+    flex: 1;
+    color:  rgb(187, 0, 9);
+    background-color:rgb(232, 223, 223);
+    height:100vh;
+  margin-top: 8%;    
+  
+ }
+
+  /* input[type="text"]::placeholder {
+    color:rgba(215, 109, 114, 0.507);
+  } */
+  
+    
+ .page{
+  background-color:rgb(232, 223, 223) ;
+  height:100vh;
+
+ }
+  
+  .row {
+    display: -ms-flexbox; 
+    display: flex;
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap;
+    margin: 0 -16px;
+
+  }
+  
+  .col-25 {
+    -ms-flex: 25%; 
+    flex: 25%;
+    margin-top: 3.5%;
+
+  }
+  
+  .col-50 {
+    -ms-flex: 50%; 
+    flex: 50%;
+
+  }
+  
+  .col-75 {
+    -ms-flex: 75%; 
+    flex: 75%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+  
+  .container {
+    background-color:rgb(232, 223, 223);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5px 20px 15px 20px;
+    border: 2px solid rgb(187, 0, 9);
+    border-radius: 3px;
+    margin-top: 7%;
+
+    
+  }
+  
+  input[type="text"] {
+    width: 80%;
+    /* margin-bottom: 10%; */
+    height: 30px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none!important;
+    background-color: transparent;
+    border-bottom: 3px solid  rgb(187, 0, 9)!important;
+  }
+  input[type="date"] {
+    width: 90%;
+    /* margin-bottom: 10%; */
+    height: 30px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none!important;
+    background-color: transparent;
+    border-bottom: 3px solid  rgb(187, 0, 9)!important;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+  .btn {
+    background-color:  rgb(187, 0, 9);
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+    font-family: 'Oooh Baby', sans-serif;
+font-weight: 400;
+font-size: 28px;
+margin-top: 8%;
+ }
+  
+  .btn:hover {
+    background-color:rgb(215, 109, 114);
+    color: white;
+  }
+  
+  a {
+text-decoration: none; 
+color:  rgb(187, 0, 9);
+ }
+  
+  hr {
+    border: 1px solid rgb(187, 0, 9);
+  }
+  
+  span.price {
+    float: right;
+    color:rgb(187, 0, 9);
+  }
+  
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+      margin-top: 20%;
+    }
+    .MiniFooter {
+      display: none;
+    }
+  .footercheckout{
+    display: none;
+  }
+  }

@@ -1,87 +1,195 @@
-.maincatalog{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height:fit-content;
-    margin-bottom: 10%;
-
+.maincatalog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+  margin-bottom: 10%;
 }
-.title{
-    flex: 1;
-    font-family: 'Oooh Baby', sans-serif;
-font-size: 54px;
-margin-top: 18px;
-text-align: center;
-    
+.title {
+  flex: 1;
+  font-family: 'Oooh Baby', sans-serif;
+  font-size: 54px;
+  margin-top: 18px;
+  text-align: center;
 }
 .ulc {
-    list-style-type: circle; 
-  }
+  list-style-type: circle;
+}
 
-.orderbutton{
-    width: 50%;
-    height: 50px;
-    font-family: 'Oooh Baby', sans-serif;
-    border: 2px solid ;
-    border-color: white;
-    background-color: transparent;
-    margin-bottom: 10%;
+.orderbutton {
+  width: 130px;
+  height: 50px;
+  font-family: 'Oooh Baby', sans-serif;
+  border: 2px solid;
+  border-color: white;
+  background-color: transparent;
+  margin-bottom: 20%;
+  font-size: large;
+  color: white !important;
+}
+.orderbutton:hover {
+  background-color: rgb(215, 109, 114);
+}
+.cakes,
+.cupcakes,
+.cookies {
+  color: rgb(187, 0, 9);
+  font-size: large;
+  margin-right: 32%;
+  margin-bottom: -80%;
+  cursor: pointer;
+}
+.cakes:hover,
+.cupcakes:hover {
+  color: rgb(215, 109, 114);
+  cursor: pointer !important;
+}
+ul,
+li {
+  text-decoration: none;
+}
+.selectionband {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 25%;
+}
+.cookies:hover {
+  color: rgb(215, 109, 114);
+  cursor: pointer;
+}
 
+.cupcakes:hover,
+.cakes:hover {
+  color: rgb(215, 109, 114);
+  cursor: pointer;
 }
-.orderbutton:hover{
-    background-color: rgb(215, 109, 114);
 
+.firstdivhome {
+  flex: 1;
+  background-color: rgb(187, 0, 9);
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 
+  width: 50%;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3%;
 }
-.firstdiv{
-    flex: 1;
-    background-color: rgb(187, 0, 9);
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-
-    width: 70%;
-    color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-right: 3%; */
-    
-    
+.text {
+  text-align: center;
+  margin-bottom: 18%;
+  font-size: large;
 }
-.text{
-    text-align: center;
-    margin-bottom: 18%;
+.catblockhome {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 5%;
 }
-.catblock{
-    flex:1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 5%;
+.catimgsh {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.catimgs{
-    flex:2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.row1h {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
 }
-.row1{
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    margin-top: 5%;
+.row2h {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
 }
-.row2{
-    flex:1;
-    display: flex;
-    flex-direction: row;
-}
-.imgsize{
-    width: 30%;
-    height:190px;
+.imgsizeh {
+    width: 35%;
+    height: 190px;
     margin-bottom: 7%;
     margin-right: 3%;
+    object-fit: cover; }
+@media (max-width: 700px) {
+
+  .selectionband {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 0%;
+    margin-bottom: 20%;
+  }
+  .orderbutton {
+    width: 100px;
+  
+  }
+  .catblockhome {
+    flex: 1;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    margin-top: 5%;
+  }
+  .firstdivhome {
+    flex: 1;
+    background-color: rgb(187, 0, 9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 90%;
+    color: aliceblue;
+    display: flex;
+
+    margin-right: 0%;
+    margin-left: 0%;
+  }
+  .text {
+    text-align: center;
+    margin-bottom: 18%;
+    font-size: large;
+  }
+  .catblockhome {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+  }
+  .catimgsh {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+    width: 100%;
+  }
+  .row1h {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+  }
+  .row2h {
+    display: none;
+  }
+  .imgsizeh {
+    width: 90%;
+    height: 190px;
+    margin-bottom: 7%;
+    margin-right: 3%;
+  }
 }

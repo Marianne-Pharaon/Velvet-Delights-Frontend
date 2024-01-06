@@ -13,17 +13,31 @@
 .button{
     border: 3px solid ;
     border-color: rgb(187, 0, 9);
-    width: 150px;
-    height: 40px;
+    width: 250px;
+    height: 60px;
     color: rgb(187, 0, 9);
-    margin-bottom: 15%;
+    margin-bottom: 13%;
     font-family: 'Oooh Baby', sans-serif;
     font-weight: bold;
-    font-size: x-large;
+    font-size: 38px;
 
 }
 .button:hover{
     background-color:  rgb(187, 0, 9);
     cursor: pointer;
     color: white;
+}
+@media (max-width: 600px) {
+    .button{
+        border: 3px solid ;
+        border-color: rgb(187, 0, 9);
+        width: 150px;
+        height: 60px;
+        color: rgb(187, 0, 9);
+        margin-bottom: 13%;
+        font-family: 'Oooh Baby', sans-serif;
+        font-weight: bold;
+        font-size: 28px;
+    
+    }
 }

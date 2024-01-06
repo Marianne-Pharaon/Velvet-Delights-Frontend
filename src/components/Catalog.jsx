@@ -6,6 +6,8 @@ import image3 from '../Images/cake3.jpg'
 import image4 from '../Images/cake4.jpg'
 import image5 from '../Images/cake5.jpg'
 import image6 from '../Images/cake6.jpg'
+import { Link } from 'react-router-dom';
+
 
 const Catalog = () => {
   return (
@@ -13,40 +15,40 @@ const Catalog = () => {
 
       <div className='title'>Our Catalog</div>
       <div className='selectionband'>
-        <div className='cakes'><button className='cakes'>Cakes</button></div>
-        <div className='cupcakes'><button className='cupcakes'>Cupcakes</button></div>
-        <div className='cookies'><button className='cookies'>Cookies</button></div>
+        <div className='cakes'><Link to="/AllProducts"><button className='cakes'>Cakes</button></Link></div>
+        <div className='cupcakes'><Link to="/AllProducts"><button className='cupcakes'>Cupcakes</button></Link></div>
+        <div className='cookies'><Link to="/AllProducts"><button className='cookies'>Cookies</button></Link></div>
       </div>
       
 
-      <div className='catblock'>
+      <div className='catblockhome'>
 
-        <div className="firstdiv">
-          <span className='font-Oooh+Baby mt-5 mb-6 text-3xl'>Filling<br/></span>
+        <div className="firstdivhome">
+          <span className='font-Oooh+Baby mt-5 mb-6 text-4xl'>Filling<br/></span>
           <span className='text' >you can choose one of <br/>six toping for the cake</span>
           <ul className='ulc'>
-            <li  className='font-outfit text-base'>Snicker</li>
-            <li  className='font-outfit text-base'>Red Velvet</li>
-            <li  className='font-outfit text-base'>oreo cheese</li>
-            <li  className='font-outfit text-base'>cherry bomb</li>
-            <li  className='font-outfit text-base'>Berry </li>
-            <li  className='font-outfit text-base mb-10'>Bounty</li>
+            <li  className='font-outfit text-xl'>Snicker</li>
+            <li  className='font-outfit text-xl'>Red Velvet</li>
+            <li  className='font-outfit text-xl'>Oreo Cheese</li>
+            <li  className='font-outfit text-xl'>Cherry bomb</li>
+            <li  className='font-outfit text-xl'>Berry </li>
+            <li  className='font-outfit text-xl mb-10'>Ice Cream</li>
           </ul>
-          <button className='orderbutton'>Order Now</button>
+          <Link to="/Customorder"><button className='orderbutton'>Order Now</button></Link>
         </div>
 
-      <div className='catimgs'>
+      <div className='catimgsh'>
 
-<div className='row1'>
-<img src={image1} className='imgsize'/>
-<img src={image2} className='imgsize'/>
-<img src={image3} className='imgsize'/>
+<div className='row1h'>
+<img src={image1} className='imgsizeh'/>
+<img src={image2} className='imgsizeh'/>
+<img src={image3} className='imgsizeh'/>
 
 </div>
-<div className='row2'>
-<img src={image4} className='imgsize'/>
-<img src={image5} className='imgsize'/>
-<img src={image6} className='imgsize'/>
+<div className='row2h'>
+<img src={image4} className='imgsizeh'/>
+<img src={image5} className='imgsizeh'/>
+<img src={image6} className='imgsizeh'/>
 </div>
 
       </div>

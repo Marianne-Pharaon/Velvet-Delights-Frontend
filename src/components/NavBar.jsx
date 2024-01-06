@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import image from '../Images/logo.png';
 
 function NavBar() {
   let Links = [
     { name: 'Home', link: '/' },
-    { name: 'Catalog', link: '/' },
-    { name: 'About Us', link: '/' },
-    { name: 'Contact Us', link: '/' },
-    { name: 'Order Now', link: '/' },
+    { name: 'Catalog', link: '/AllProducts' },
+    { name: 'About Us', link: '/AboutUs' },
+    { name: 'Contact Us', link: '/Contact' },
+    { name: 'Order Now', link: '/Customorder' },
+    { name: 'Cart', link: '/Checkout' },
+    { name: 'Login', link: '/Login' },
   ];
 
   let [open, setOpen] = useState(false);
@@ -38,7 +41,7 @@ function NavBar() {
                 style={{ color: 'rgb(187, 0, 9)' }}
                 className='hover:text-gray-800 duration-500'
               >
-                {link.name}
+                {link.name }
               </a>
             </li>
           ))}
