@@ -1,0 +1,41 @@
+.AddCakepage{
+    margin-top: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    flex-direction: column;
+    margin-left: 10%;
+    
+}
+.Addtitle{
+    flex: 1;
+     font-family: 'Oooh Baby', sans-serif;
+     font-size: 64px;
+     color: rgb(187,0,9);
+    ;
+}
+.AddCakeborder{
+    flex: 1;
+    border: 8px solid rgb(187,0,9);
+    width: 80%;
+    height: fit-content;
+
+}
+.addtxtdeco{
+    font-family: 'Outfit', serif;
+    font-size: 24px;
+    color: rgb(187,0,9);
+}
+
+.dashinputs {
+ border-top: 3px solid rgb(187, 0, 9) !important;
+ border-bottom: 3px solid rgb(187, 0, 9) !important;
+ border-left: 3px solid rgb(187, 0, 9) !important;
+ border-right: 3px solid rgb(187, 0, 9) !important;
+    border-radius: 0;
+    outline: none;
+    width: 70%;
+}
+
+.dashinputs::placeholder {
+    color: transparent; }

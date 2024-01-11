@@ -15,9 +15,9 @@ const Catalog = () => {
 
       <div className='title'>Our Catalog</div>
       <div className='selectionband'>
-        <div className='cakes'><Link to="/AllProducts"><button className='cakes'>Cakes</button></Link></div>
-        <div className='cupcakes'><Link to="/AllProducts"><button className='cupcakes'>Cupcakes</button></Link></div>
-        <div className='cookies'><Link to="/AllProducts"><button className='cookies'>Cookies</button></Link></div>
+        <div className='cakes'><Link to="/Type">Cakes</Link></div>
+        <div className='cupcakes'><Link to="/Type">Cupcakes</Link></div>
+        <div className='cookies'><Link to="/Type">Cookies</Link></div>
       </div>
       
 

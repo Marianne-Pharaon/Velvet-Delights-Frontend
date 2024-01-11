@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../Images/logo.png';
+const DashNav = () => {
 
-function NavBar() {
-  let Links = [
-    { name: 'Home', link: '/' },
-    { name: 'Catalog', link: '/AllProducts' },
-    { name: 'About Us', link: '/AboutUsPage' },
-    { name: 'Contact Us', link: '/SMTP' },
-    { name: 'Order Now', link: '/Customorder' },
-    { name: 'Cart', link: '/Checkout' },
-    { name: 'Login', link: '/Login' },
+         let Links = [
+    { name: 'All Products', link: '/DashAllProducts' },
+    { name: 'Users', link: '/DashUsers' },
+    { name: 'Add Cakes', link: '/AddCakes' },
+    { name: 'Orders', link: '/DashOrders' },
+   
   ];
 
   let [open, setOpen] = useState(false);
 
   return (
-    <div className='shadow-md w-full fixed top-0 left-0 '>
+    <div className='shadow-md w-full fixed top-0 left-0'>
       <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[poppins] text-gray-800'>
           <span className='text-3xl text-indigo-600 mr-1 pt-2'>
-          <Link to="/DashAllProducts"><img src={image} alt='Logo' style={{ width: '250px', height: '50px' }} /></Link>
+          <Link to="/HomePage"><img src={image} alt='Logo' style={{ width: '250px', height: '50px' }} /></Link>
           </span>
         </div>
         <div
@@ -48,7 +46,7 @@ function NavBar() {
         </ul>
       </div>
     </div>
-  );
+  )
 }
 
-export default NavBar;
+export default DashNav;

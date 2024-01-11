@@ -17,7 +17,7 @@
     
  .page{
   background-color:rgb(232, 223, 223) ;
-  height:100vh;
+  /* height:100vh; */
 
  }
   
@@ -46,6 +46,7 @@
   .col-75 {
     -ms-flex: 75%; 
     flex: 75%;
+
   }
   
   .col-25,
@@ -135,7 +136,9 @@ color:  rgb(187, 0, 9);
     float: right;
     color:rgb(187, 0, 9);
   }
-  
+  .footercheckout{
+    margin-top: 10%;
+  }
   @media (max-width: 800px) {
     .row {
       flex-direction: column-reverse;

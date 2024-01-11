@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap';
 import logo from '../Images/logo.png';
 import cheescake1 from '../Images/cheescake1.jpg';
 import Chocolate from '../Images/chocolate.jpg';
-import '../style/review.css'; // Assuming this path is correct
+import '../style/review.css'; 
 
 const Reviews = () => {
   const componentStyle = {
@@ -15,11 +15,7 @@ const Reviews = () => {
     height: '500px',
   };
 
-  const imageStyle = {
-    objectFit: 'cover',
-    height: '100%',
-    width: '100%',
-  };
+ 
 
   return (
     <div style={{ ...componentStyle, ...carouselItemStyle }}>
@@ -36,14 +32,14 @@ const Reviews = () => {
         </Carousel.Item>
         <Carousel.Item>
           <div className='rev1'>
-            <div className='revbox'>Another great review here.</div>
-            <span className='revname'>Another Reviewer</span>
+            <div className='revbox'>I recently had the pleasure of visiting Velvet Delights Bakery, and I must say, it was a delightful experience from start to finish..</div>
+            <span className='revname'>Jhony Parker</span>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <div className='rev1'>
-            <div className='revbox'>And one more positive review.</div>
-            <span className='revname'>Another Chef</span>
+            <div className='revbox'>I tried their signature Red Velvet cake. The cake was moist, perfectly balanced in sweetness, and the cream cheese frosting was heavenly. Each bite  left me craving more.</div>
+            <span className='revname'>Tracy Miller</span>
           </div>
         </Carousel.Item>
       </Carousel>
