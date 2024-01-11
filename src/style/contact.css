@@ -20,20 +20,46 @@
     display: flex;
     flex-direction: column;
     margin-right: 10%;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 .title1{
     flex: 1;
     font-size:54px ;
     font-family: 'Oooh Baby', sans-serif;
     margin-top: 7%;
-    margin-bottom: 2%;
+    margin-bottom: 0%;
     color: white;
 }
+
 .randomtxt{
     flex: 1;
 
 
+}
+.txt{
+  font-family: 'Oooh Baby', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+}
+.SubmitForm{
+  border: 1px solid  white;
+  width: 150px;
+  font-family: 'Oooh Baby', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+
+
+}
+
+.white-textarea {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 5px 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: black;
 }
 .table1 {
     border-collapse: collapse;
@@ -42,7 +68,12 @@
   }
 
  
+ .contactsmtp{
+  color: white;
+  background-color: white !important;
+  width:100% !important;
 
+ }      
   th, td {
     padding: 18px;
     text-align: left;
@@ -63,26 +94,29 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 600px;
+    height: 650px;
     display: flex;
     flex-direction: column;
+    
  }
  .a{flex:1;}
 .pngs{
     max-width: fit-content;
   height: auto;
 }
+
+
  @media (max-width: 600px) {
     @media (max-width: 600px) {
   .contact-row {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 12px; /* Adjust the spacing between rows */
+    margin-bottom: 12px; 
   }
 
   .contact-icon {
-    margin-bottom: 10px; /* Adjust the spacing between the icon and text */
+    margin-bottom: 10px; 
   }
 
   .contactimg {
@@ -108,7 +142,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 0%;
-    margin-top: 15%;
+    margin-top: 30%;
   }
 
   .copyright {

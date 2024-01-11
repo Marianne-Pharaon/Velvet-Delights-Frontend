@@ -2,10 +2,17 @@ import React from 'react';
 import style from '../style/Checkout.css'
 import NavBar from './NavBar';
 import MiniFooter from './MiniFooter';
+import { ToastContainer, toast } from "react-toastify";
+
 
 
 
 const Checkout = () => {
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    toast.success("Order Received. Thank you for choosing us!");
+};
   function verifyEmail() {
     const emailInput = document.getElementById('email');
     const email = emailInput.value;
@@ -26,7 +33,7 @@ const Checkout = () => {
         <div className="row">
           <div className="col-75">
             <div className="container">
-              <form className='cform'>
+              <form className='cform' onSubmit={handleFormSubmit} >
                 <div className="row">
                   <div className="col-50">
                     <h3>Checkout</h3><br />
@@ -83,6 +90,8 @@ const Checkout = () => {
         </div>
       </div>
       <div className='footercheckout'>
+      <ToastContainer/>
+
       <MiniFooter /></div>
     </div>
   );

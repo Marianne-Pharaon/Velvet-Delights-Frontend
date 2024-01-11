@@ -10,7 +10,7 @@ text-align: center;
     font-family: 'Oooh Baby', sans-serif;
 font-size: 48px;
 margin-top: 7%;
-margin-bottom: 7%;
+margin-bottom: 3%;
 text-align: center;
     
 }
@@ -25,10 +25,11 @@ text-align: center;
 .revbox{
     flex: 1;
     font-family: 'Oooh Baby', sans-serif;
-font-size: 36px;
+font-size: 30px;
 margin-top: 18px;
 margin-bottom: 1%;
 text-align: center;
+width: 80%;
 
 }
 .revname{

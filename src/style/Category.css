@@ -24,8 +24,9 @@ text-align: center;
     border: 2px solid ;
     border-color: white;
     background-color: transparent;
-    margin-bottom: 10%;
+    margin-bottom: 20%;
     color: white;
+    font-size: 26px;
 
 }
 .catbutton:hover{
@@ -49,6 +50,8 @@ text-align: center;
     width: 50%;
     color: white;
         margin-left: 28%;
+        height: 450px;
+        
     
     
 }

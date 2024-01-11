@@ -22,7 +22,7 @@ const Cake = () => {
             <div className='cakedesc'>
               A symphony of moist chocolate layers, velvety cream cheese frosting, and adorned with fresh raspberries. A decadent delight, perfect for celebrating moments of pure bliss. Elevate your taste experience with every heavenly bite.
             </div><br />
-            <div className='cakedesc1'>size</div><br />
+            <div className='cakedesc1'>size</div> <br />
             <div className='cakedesc1'>Price</div>
             <button className='addtocart'>Add To Cart</button>
 
