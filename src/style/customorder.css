@@ -4,6 +4,40 @@
     font-weight: 400;
     color:  rgb(187, 0, 9);
 }
+.flexbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: 
+  left;
+  align-items: 
+  left;
+  margin-bottom: 2%;
+  text-align: start;
+}
+.txtdeco1{
+  flex: 1;
+    font-family: 'Oooh Baby', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color:  rgb(187, 0, 9);
+    margin-left: 5%;
+
+}
+.txtdeco2{
+  flex: 2;
+    font-family: 'Oooh Baby', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color:  rgb(187, 0, 9);
+
+}
+.file{
+  flex: 2;
+    font-size: 18px;
+    font-weight: 400;
+    color:  rgb(187, 0, 9);
+
+}
 .orderform{
     margin-top: 10%;
     margin-bottom: 7%;
@@ -13,21 +47,33 @@
     text-align: center;
     width: 90%;
 }
-.table1{
-    width: 90%;
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(3, auto); 
+  gap: 20px; 
+}
+/*  */
+.grid-item {
+  padding: 10px;
+color: rgb(187, 0, 9); 
 }
 .descdiv{
+  flex: 1;
     border: 3px solid  rgb(187, 0, 9);
-width: 100%;
+width: 60%;
 height: 130px;
-
+align-items: flex-start;
+/* margin-left: 40%; */
 }
 .btn{
     border: 3px solid  rgb(187, 0, 9);
 color: rgb(187, 0, 9);
 background-color: transparent;
 width: 60%;
+margin-left: 10%;
+margin-bottom: 10%;
 }
 .check{
     font-size: 18px;
@@ -45,34 +91,48 @@ width: 60%;
     color:  rgb(187, 0, 9);
  }
 
+ 
+    
  @media (max-width: 700px) {
-    .orderform{
-        margin-top: 25%;
-      
-    }
-    .table1 tr {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-        margin-left: 17%;
-      }
-    
-      .table1 td {
-        text-align: left;
-        width: 100%;
-      }
-    
-      .table1 td[colspan="3"] {
-        width: 100%;
-      }
-    
-      .check {
-        margin-bottom: 10px;
-      }
-    
-      .btn {
-        width: 100%;
-      }
- }
+  .orderform {
+    margin-top: 25%;
+  }
+
+  .table1 tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 17%;
+  }
+
+  .table1 td {
+    text-align: left;
+    width: 100%;
+  }
+
+  .table1 td[colspan="3"] {
+    width: 100%;
+  }
+
+  .check {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    width: 80%; /* Adjust the width as needed */
+    margin-left: 10%; /* Adjust the margin as needed */
+    margin-bottom: 10%;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+  }
+  .grid-item{
+    margin-top: -20%;
+  }
+}
+
   

@@ -8,10 +8,10 @@ const AboutUsPage = () => {
   return (
     <div>
  <NavBar/>
-  
+ <div style={{ marginTop: '80px' }}>
   <AboutUs/>
   <Reviews/>
-<MiniFooter/>        </div>
+<MiniFooter/>   </div>     </div>
   )
 }
 

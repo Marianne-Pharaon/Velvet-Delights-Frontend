@@ -36,15 +36,19 @@
 .cookies {
   color: rgb(187, 0, 9);
   font-size: large;
-  margin-right: 32%;
-  margin-bottom: -80%;
+  margin-right: 10px; /* Adjust the margin */
+  cursor: pointer;
+  margin-bottom: -30%;
+  margin-top: 25%;
+}
+
+.cookies:hover,
+.cupcakes:hover,
+.cakes:hover {
+  color: rgb(215, 109, 114);
   cursor: pointer;
 }
-.cakes:hover,
-.cupcakes:hover {
-  color: rgb(215, 109, 114);
-  cursor: pointer !important;
-}
+
 ul,
 li {
   text-decoration: none;

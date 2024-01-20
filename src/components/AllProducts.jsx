@@ -1,19 +1,51 @@
-import React from 'react';
-import style3 from '../style/AllProducts.css'
+import React, { useState, useEffect, useMemo } from "react";
+import { useHistory, Link } from "react-router-dom";
+import style3 from '../style/AllProducts.css';
 import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
-import { Link } from 'react-router-dom';
+import axios from "axios";
 
-
-
-import image1 from '../Images/cheescake1.jpg'
-import image2 from '../Images/cheescake2.jpg'
-import image3 from '../Images/cake3.jpg'
-import image4 from '../Images/cake4.jpg'
-import image5 from '../Images/cake5.jpg'
-import image6 from '../Images/cake6.jpg'
 
 const AllProducts = () => {
+  const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [error, setError] = useState(null);
+
+  // const filteredProducts = useMemo(() => {
+  //   console.log("Filtering using Memo...");
+  //   return products.filter((product) =>
+  //     product.product_name.toLowerCase().includes(filter.toLowerCase())
+  //   );
+  // }, [products, filter]);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8001/products/getproducts`
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching Products:", error);
+        setError("Error fetching products. Please try again later.");
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleClick = () => {
+    history.push('/Categories');
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  
+
   return (
     <div>
       <NavBar />
@@ -25,38 +57,19 @@ const AllProducts = () => {
           <div className='cakes'><Link to="/Type"><button className='cakes'>Cakes</button></Link></div>
           <div className='cupcakes'><Link to="/Type"><button className='cupcakes'>Cupcakes</button></Link></div>
           <div className='cookies'><Link to="/Type"><button className='cookies'>Cookies</button></Link></div>
-          <div className='cakes'><button className='filter'>Filter</button></div>
         </div>
-
-
 
         <div className='catimgs'>
 
-          <div className='row1'>
+          {products.map((products) => (
+            <div className='row1' key={products._id}>
+              <Link to={`/products/${products._id}`}>
+                <img src={products.image} className='pimgsize' alt={products.name} />
+              </Link>
+            </div>
+          ))}
 
-          <Link to="/Cake"> <img src={image1} className='pimgsize' /></Link>
-          <Link to="/Cake"> <img src={image2} className='pimgsize' /></Link>
-          <Link to="/Cake"> <img src={image3} className='pimgsize' /></Link>
-
-          </div>
-
-          <div className='row2'>
-          <Link to="/Cake"> <img src={image4} className='pimgsize' /></Link>
-          <Link to="/Cake"> <img src={image5} className='pimgsize' /></Link>
-          <Link to="/Cake"> <img src={image6} className='pimgsize' /></Link>
-
-           
-          </div>
-
-          <div className='row2'>
-          <Link to="/Cake"> <img src={image4} className='pimgsize' /></Link>
-          <Link to="/Cake"> <img src={image5} className='pimgsize' /></Link>
-          <Link to="/Cake"> <img src={image6} className='pimgsize' /></Link>
-
-           
-          </div>
-       
-
+      
         </div>
       </div>
       <MiniFooter />
@@ -64,5 +77,20 @@ const AllProducts = () => {
   )
 }
 
-export default AllProducts
+export default AllProducts;
 
+
+
+
+
+    {/* <div className='row2'>
+            <Link to="/Cake"><img src={image4} className='pimgsize' alt="Cake 4" /></Link>
+            <Link to="/Cake"><img src={image5} className='pimgsize' alt="Cake 5" /></Link>
+            <Link to="/Cake"><img src={image6} className='pimgsize' alt="Cake 6" /></Link>
+          </div>
+
+          <div className='row2'>
+            <Link to="/Cake"><img src={image4} className='pimgsize' alt="Cake 4" /></Link>
+            <Link to="/Cake"><img src={image5} className='pimgsize' alt="Cake 5" /></Link>
+            <Link to="/Cake"><img src={image6} className='pimgsize' alt="Cake 6" /></Link>
+          </div> */}
