@@ -9,28 +9,31 @@ const Register = () => {
   const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(null); 
   const history = useHistory();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true); 
-
-    if (!name || !address || !age || !email || !password) {
-      console.error('All fields are required');
-      setLoading(false); 
+    setLoading(true);
+  
+    if (!name || !address || !age || !email || !password || !phoneNumber) {
+      setError('All fields are required');
+      setLoading(false);
       return;
     }
-
+  
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/addusers`, {
+      const response = await axios.post(`http://localhost:8001/user/addusers`, {
         fullName: name,
         age,
         email,
         password,
-      });
-
+        phoneNumber,
+        role: 'user', 
+            });
+  
       if (response.status === 201) {
         console.log('Registration successful');
         history.push('/Login');
@@ -39,16 +42,21 @@ const Register = () => {
         setAge('');
         setEmail('');
         setPassword('');
+        setPhoneNumber('');
       } else {
-        console.error('Unable to register user');
+        setError('Unable to register user');
       }
     } catch (error) {
-      console.error('Error during registration:', error.message);
-      setError(error.message); 
+      console.error('Error during registration:', error);
+  
+      // Display a meaningful error message to the user
+      setError(error.response?.data?.message || 'An error occurred during registration');
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
+  
+
 
   return (
     <div className='registerdiv'>
@@ -75,6 +83,13 @@ const Register = () => {
             placeholder='Age'
             value={age}
             onChange={(e) => setAge(e.target.value)}
+          />
+          <input
+            type="text"
+            className='redLineInput'
+            placeholder='Phone Number'
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
           />
           <input
             type="text"

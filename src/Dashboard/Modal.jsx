@@ -5,14 +5,17 @@ import '../Dashstyle/modal.css';
 const Modal = ({ closeModal, productId }) => {
   const [name, setCakeName] = useState('');
   const [description, setDescription] = useState('');
-  const [size, setSize] = useState('');
   const [category, setCategory] = useState('');
+  const [image, setImage] = useState("");
+
 
   const handleUpdateCake = async (event) => {
     event.preventDefault();
 
     try {
       const formData = new FormData();
+      formData.append("image", image);
+
       formData.append("name", name);
       formData.append("description", description);
       formData.append("category", category);
@@ -30,7 +33,7 @@ const Modal = ({ closeModal, productId }) => {
       if (response.status === 201) {
         console.log(formData);
         window.alert("Cake updated successfully!");
-        closeModal(); // Close the modal by calling the prop function
+        closeModal(); 
       } else {
         throw new Error("Network response was not ok");
       }
@@ -46,12 +49,11 @@ const Modal = ({ closeModal, productId }) => {
         <span className="close" onClick={closeModal}>&times;</span>
 
         <div className='AddCakepage'>
-          <div className='Addtitle'>Update Cake</div>
           <div className='AddCakeborder'>
             <form className='addform'>
               <table className='table'>
                 <tr>
-                  <td className='addtxtdeco'>Cake Name</td>
+                  <td className='addtextdecomodal'>Cake Name</td>
                   <td>
                     <textarea
                       className='dashinputs'
@@ -63,7 +65,7 @@ const Modal = ({ closeModal, productId }) => {
                   </td>
                 </tr>
                 <tr>
-                  <td className='addtxtdeco'>Description</td>
+                  <td className='addtextdecomodal'>Description</td>
                   <td>
                     <textarea
                       className='dashinputs'
@@ -74,8 +76,8 @@ const Modal = ({ closeModal, productId }) => {
                     ></textarea>
                   </td>
                 </tr>
-                <tr>
-                  <td className='addtxtdeco'>Size</td>
+                {/* <tr>
+                  <td className='addtextdecomodal'>Size</td>
                   <td>
                     <textarea
                       className='dashinputs'
@@ -85,12 +87,11 @@ const Modal = ({ closeModal, productId }) => {
                       onChange={(e) => setSize(e.target.value)}
                     ></textarea>
                   </td>
+                </tr> */}
+                <tr>
                 </tr>
                 <tr>
-                  {/* Add other form elements as needed */}
-                </tr>
-                <tr>
-                  <td className='addtxtdeco'>Category</td>
+                  <td className='addtextdecomodal'>Category</td>
                   <td className='check'>
                     <textarea
                       className='dashinputs'
@@ -100,7 +101,9 @@ const Modal = ({ closeModal, productId }) => {
                       onChange={(e) => setCategory(e.target.value)}
                     ></textarea>
                   </td>
+
                 </tr>
+               
                 <tr>
                   <td colSpan={4}>
                     <button className='btn' onClick={handleUpdateCake}>

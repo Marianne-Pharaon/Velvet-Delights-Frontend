@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import '../Dashstyle/DashUsers.css';
 import DashNav from './DashNav';
-import axios from 'axios';  
+import axios from 'axios';
 
 const DashUsers = () => {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get('http://localhost:8001/user/getusers'); 
-        setUsers(response.data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8001/user/getusers');
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchUsers();
   }, []);
+
+  const handleDeleteUser = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:8001/user/deleteusers/${userId}`);
+      fetchUsers();
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  };
 
   return (
     <div className='dashusers'>
@@ -32,6 +41,7 @@ const DashUsers = () => {
               <th className='utableth'>Email</th>
               <th className='utableth'>Address</th>
               <th className='utableth'>Age</th>
+              <th className='utableth'>Delete User</th>
             </tr>
             {users.map((user) => (
               <tr key={user.user_id}>
@@ -40,7 +50,11 @@ const DashUsers = () => {
                 <td className='utableth'>{user.email}</td>
                 <td className='utableth'>{user.address}</td>
                 <td className='utableth'>{user.age}</td>
-
+                <td className='utableth'>
+                  <button onClick={() => handleDeleteUser(user._id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </table>

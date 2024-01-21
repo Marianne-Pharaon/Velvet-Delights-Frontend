@@ -12,6 +12,13 @@
     margin-top: 10%;
     
   }
+
+  .addtextdecomodal{
+      font-family: 'Outfit', serif;
+      font-size: 16px;
+      color: rgb(187,0,9)!important;
+  
+  }
   .modal-content {
     position: fixed;
     top: 50%;
