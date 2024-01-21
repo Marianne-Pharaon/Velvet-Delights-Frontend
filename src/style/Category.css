@@ -1,5 +1,5 @@
 
-.collectiontitle{
+.collectiontitle1{
     flex: 1;
     font-family: 'Oooh Baby', sans-serif;
 font-size: 48px;
@@ -8,16 +8,17 @@ margin-bottom: 7%;
 text-align: center;
     
 }
-.catblock1{
+.catblock11{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     justify-content: center;
     margin-top: 5%;
+    margin-left: 8%;
 }
 
-.catbutton{
+.catbutton1{
     width: 160px;
     height: 50px;
     font-family: 'Oooh Baby', sans-serif;
@@ -29,27 +30,27 @@ text-align: center;
     font-size: 26px;
 
 }
-.catbutton:hover{
+.catbutton1:hover{
     background-color: rgb(215, 109, 114);
     cursor: pointer;
 
 
 }
-.categ{
+.categ1{
     flex: 1;
   
 
 }
-.firstdiv2{
+.firstdiv21{
    display: flex;
    flex-direction: column;
     background-color: rgb(187, 0, 9);
     justify-content: center;
     align-items: center;
 
-    width: 50%;
+    width: 80%;
     color: white;
-        margin-left: 28%;
+        margin-left: 25%;
         height: 450px;
         
     
@@ -60,20 +61,23 @@ text-align: center;
     margin-bottom: 18%;
 }
 
-.catimgs{
+.catimgs1{
 
    flex: 2;
    display: flex;
     justify-content: left;
     align-items: left;
+    margin-left: 10%;
+
 }
 
 
-.catimgsize{
+.catimgsize1{
     width: 90%;
     height:420px;
     margin-bottom: 13%;
-    margin-right: 33%;
+    margin-top: 13%;
+    margin-right: 15%;
 
     /* margin-top: 8%; */
 }
@@ -83,11 +87,11 @@ text-align: center;
     margin-top: 5%;
 }
 @media only screen and (max-width: 600px) {
-    .catimgsize{
+    .catimgsize1{
         display: none;
         
     }
-    .firstdiv2{
+    .firstdiv21{
         flex: 1;
         background-color: rgb(187, 0, 9);
         justify-content: center;
@@ -106,7 +110,7 @@ text-align: center;
     
     }
 
-    .catblock1{
+    .catblock11{
         display: flex;
         flex-direction: column;
         justify-content: center;

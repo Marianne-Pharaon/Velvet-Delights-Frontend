@@ -1,88 +1,227 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '../style/customorder.css'
 import NavBar from './NavBar';
 import MiniFooter from './MiniFooter';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import { fillings, toppings, sizes, flavours } from './options';
 
 
 
 
 const Customorder = () => {
+    const [fillingOption, setFillingOption] = useState({})
+    const [toppingOption, setToppingOption] = useState({})
+    const [SizeOption, setSizeOption] = useState({})
+    const [flavourOption, setFlavourOption] = useState({});
 
-        const [selectedFile, setSelectedFile] = useState(null);
-      
-        const handleFileChange = (event) => {
-          const file = event.target.files[0];
-          
-          setSelectedFile(file);
-        };
-      
-  return (
-    <div className='page2'>       <NavBar/>
-    <div className='order'>
-        <form className='orderform' >
-            <table className='table1'>
-              
-<tr>
-    <td className='txtdeco'>Filling</td>
-    <td className='check' > <input type="checkbox" id="myCheckbox"  name="vanilla Cream"/>Snicker<br/><input type="checkbox" id="myCheckbox"  name="with nuts"/>Cherry bomb</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"  name="chocolate filling"/>Red Velvet<br/><input type="checkbox" id="myCheckbox"  name="chocolate chips"/>Berry</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"  name="strawberry"/>Oreo Cheese<br/> <input type="checkbox" id="myCheckbox"  name="ice cream"/>Ice Cream</td>
-</tr>
-<tr>
-    <td className='txtdeco'>Topping</td>
-    <td className='check' > <input type="checkbox" id="myCheckbox" name="sprinkles"/>sprinkles<br/><input type="checkbox" id="myCheckbox" name="chocolate"/>chocolate</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"  name="fruits"/>fruits<br/><input type="checkbox" id="myCheckbox"  name="vanilla cream"/>vanilla cream</td>
-    <td className='check'>  <input type="checkbox" id="myCheckbox" name="sugar"/>sugar<br/><input type="checkbox" id="myCheckbox" name="design"/>design</td>
-</tr>
-<tr>
-    <td className='txtdeco'>Flavor</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"  name="vanilla "/>vanilla<br/><input type="checkbox" id="myCheckbox" name="orange"/>orange</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"  name="chocolate "/>chocolate<br/><input type="checkbox" id="myCheckbox" name="berries"/>berries</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"  name="strawberry"/>strawberry<br/><input type="checkbox" id="myCheckbox" name="cheescake"/>cheescake</td>
-</tr>
-<tr>
-    <td className='txtdeco'>Size</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"   /> 5 persons<br/><input type="checkbox" id="myCheckbox" className='check' name="orange"/>25 persons</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox"   />10 persons<br/><input type="checkbox" id="myCheckbox" name="berries"/>50 persons</td>
-    <td className='check'> <input type="checkbox" id="myCheckbox" />15 persons<br/><input type="checkbox" id="myCheckbox"  name="cheescake"/>100 persons or more</td>
-</tr>
+   
+    // const [options, setOptions] = useState()
+    const [image, setImage] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState(null);
 
-<tr>
-    <td className='txtdeco'>Add Description</td>
-    <td colspan="3"><textarea className='descdiv' rows="4" cols="50"></textarea></td>
-</tr>
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-<tr>
-    <td className='txtdeco'>inspiration image</td>
-    <td colspan="3">      <input type="file" onChange={handleFileChange} />
-</td>
-</tr>
+    const handleOrderCake = async (e) => {
+        e.preventDefault();
+        const otherBody = { image };
+        console.log(otherBody);
+        try {
+            const formData = new FormData();
+            formData.append("image", image);
+            formData.append("description", setDescription);
+            // formData.append("totalPrice", price);
+            // formData.append("Order", selectedOptions);
+            formData.append("user_id",100 );
+            formData.append("flavor",setFlavourOption );
+            formData.append("topping",setToppingOption );
+            formData.append("filling",setFillingOption );
+            formData.append("size",setSizeOption );
 
-<tr>
-    <td className='txtdeco'>Price :</td>
-  
-    <td ></td>
-</tr>
-<tr>
-    <td colSpan={4}> <Link to="/Checkout"><button className='btn'>Checkout</button></Link></td>
-</tr>
+console.log(formData);
+            const response = await axios.post("http://localhost:8001/custom-orders/addcustomOrders", formData , {
+                headers: {
+             "Content-Type":'multipart/form-data',
+                }
+        });
+
+            if (response.status === 201) {
+                const data = response.data;
+
+                if (data.price) {
+                    setPrice(data.price);
+                }
+
+                console.log(data);
+                window.alert("Order added successfully!");
+            } else {
+                throw new Error("Network response was not ok");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            window.alert("Error ordering cake. Please try again later.");
+        }
+    };
+
+    const [selectedOptions, setSelectedOptions] = useState({
+        filling: [],
+        topping: [],
+        flavour: [],
+        size: [],
+    });
+
+    const handleCheckboxChange = (category, value) => {
+        // Clone the current state
+        const updatedOptions = { ...selectedOptions };
+
+        // Check if the value is already selected, and toggle it
+        if (updatedOptions[category].includes(value)) {
+            updatedOptions[category] = updatedOptions[category].filter((item) => item !== value);
+        } else {
+            updatedOptions[category] = [...updatedOptions[category], value];
+        }
+
+        // Update the state
+        setSelectedOptions(updatedOptions);
+    };
 
 
-            </table>
-        </form>
 
-    </div>
-    
-  
-    <MiniFooter/>
-    </div>
-  )
+    return (
+        <div>
+            <NavBar />
+            <div className='page2'>
+
+            <div  style={{ marginTop: '10%' }} className='grid-container'>
+            <div style={{ margin: '10%' }} className="grid-item">
+
+                <label className='txtdeco'>Flavors</label>
+                
+                {flavours.map((flavour, index) => (<div>
+                    <input
+                        type="radio"
+                        key={index}
+                        id="100personsCheckbox"
+                        name='flavour'
+                        value={flavour.price}
+                        onChange={(e) => {
+                            // console.log(filling)
+                            setFlavourOption(flavour)
+                        }}
+                    />
+                    {flavour.name}
+                </div>
+                ))}
+            </div>
+            <div style={{ margin: '10%' }} className="grid-item">
+
+                <label className='txtdeco'>Filling</label>
+                
+                {fillings.map((filling, index) => (<div>
+                    <input
+                        type="radio"
+                        key={index}
+                        id="100personsCheckbox"
+                        name='filling'
+                        value={filling.price}
+                        onChange={(e) => {
+                            // console.log(filling)
+                            setFillingOption(filling)
+                        }}
+                    />
+                    {filling.name}
+                </div>
+                ))}
+            </div>
+            <div style={{ margin: '10%' }}>
+            <div className="grid-item">
+
+
+                <label className='txtdeco'>Topping</label>
+                {toppings.map((toppings, index) => (<div>
+                    <input
+                        type="radio"
+                        key={index}
+                        id="100personsCheckbox"
+                        name='Topping'
+                        value={toppings.price}
+                        onChange={(e) => {
+                            // console.log(toppings)
+                            setToppingOption(toppings)
+                        }}
+                    />
+                    {toppings.name}
+                </div>
+                ))}
+            </div></div>
+
+            <div style={{ margin: '10%' }}>
+            <div className="grid-item">
+
+
+                <label className='txtdeco'>Size</label>
+
+                {sizes.map((size, index) => (<div>
+                    <input
+                        type="radio"
+                        key={index}
+                        id="size"
+                        value={size.price}
+                        onChange={() => setSizeOption(size)}
+                    />
+                    {size.name}
+                </div>
+                ))}
+            </div></div>
+            </div>
+
+
+
+
+
+
+
+
+<div className='flexbox'>
+            <label className='txtdeco1'>Add Description</label>
+            <textarea className='descdiv' rows="4" cols="50"
+                onChange={(e) => setDescription(e.target.value)}></textarea></div>
+
+<div className='flexbox'>
+            <label className='txtdeco1'>inspiration image:</label>
+               <input className="file"type="file" onChange={(e) => setImage(e.target.files[0])} />
+        </div>
+
+
+            <div className='flexbox'>
+            <label className='txtdeco1'>Price :</label>
+            {price !== null ? `$${price}` : 'Calculating...'}
+            <label className='txtdeco2'>{price}</label>
+</div>
+
+
+
+
+
+
+
+
+
+            <button  className='btn'onClick={handleOrderCake}>Place Order</button>
+            </div>
+
+            <MiniFooter />
+           </div>
+    )
 }
 
 export default Customorder
 
-   
-   
+
+
 
 

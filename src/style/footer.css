@@ -54,27 +54,35 @@ text-align: center;
 
 @media (max-width: 700px) {
     .footer {
-        flex-direction: column;
-        height: fit-content;
-        align-items: flex-start; /* Align items to the left */
-        justify-content: center; /* Center the content vertically */
-        text-align: left; /* Align text to the left */
-      }
-    
-      .footmg {
-        margin-left: 0%;
-      }
-    
-      .footpn,
-      .footemail,
-      .footaddress {
-        align-items: flex-start; /* Align items to the left */
-        justify-content: center; /* Center the content vertically */
-        text-align: left; /* Align text to the left */
-        margin-bottom: 20px; /* Add more space between elements */
-      }
-    
-      .footpn {
-        flex-direction: row; /* Keep the phone icon and number on the same line */
-      }
-}
+      flex-direction: column;
+      height: fit-content;
+      align-items: center; /* Align items to the center */
+      justify-content: center;
+      text-align: center;
+    }
+  
+    .footmg {
+      margin-left: 0%;
+    }
+  
+    .footpn,
+    .footemail,
+    .footaddress {
+      display: flex;
+      align-items: center; /* Align items vertically */
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .footpn img,
+    .footemail img,
+    .footaddress img {
+      margin-right: 10px; /* Adjust the spacing between the icon and text */
+    }
+  
+    .footpn {
+      flex-direction: column; /* Adjust the layout for phone number */
+    }
+  }
+  

@@ -40,6 +40,7 @@ const SMTP = () => {
   
        
             toast.success("Thank you for contacting us!");
+            form.current.reset();
           },
           (error) => {
             console.log(error.text);
