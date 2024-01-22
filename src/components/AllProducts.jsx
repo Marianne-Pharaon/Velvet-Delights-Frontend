@@ -28,11 +28,11 @@ const AllProducts = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   const handleProductClick = (productId) => {
     // Navigate to the Cake page with the product ID
     history.push(`/Cake/${productId}`);
   };
+  
 
   return (
     <div>

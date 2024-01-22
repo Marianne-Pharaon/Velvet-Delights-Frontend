@@ -46,6 +46,8 @@ function App() {
  <Route path="/Types"><Types/></Route> 
  <Route path="/SMTP"><SMTP/></Route> 
  <Route path="/AboutUsPage"><AboutUsPage/></Route> 
+ <Route path="/Cake/:productId"><Cake/></Route> 
+
 
 
  

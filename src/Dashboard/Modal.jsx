@@ -1,47 +1,44 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../Dashstyle/modal.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Modal = ({ closeModal, productId }) => {
   const [name, setCakeName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  const [image, setImage] = useState("");
 
-
+  
   const handleUpdateCake = async (event) => {
     event.preventDefault();
-
+  
     try {
-      const formData = new FormData();
-      formData.append("image", image);
-
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("category", category);
-
-      const response = await axios.post(
+      const response = await axios.put(
         `http://localhost:8001/products/updateproducts/${productId}`,
-        formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          name: name,
+          description: description,
+          category: category,
+          // Add other fields you want to update
         }
       );
-
-      if (response.status === 201) {
-        console.log(formData);
-        window.alert("Cake updated successfully!");
-        closeModal(); 
+  
+      if (response.status === 200) {
+        toast.success("Cake updated successfully!");
+        closeModal();
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      window.alert("Error updating cake. Please try again later.");
+      toast.error("Error updating cake. Please try again later.");
     }
   };
+  
+
+
+  
 
   return (
     <div className="modal" style={{ display: 'block' }}>
@@ -114,6 +111,7 @@ const Modal = ({ closeModal, productId }) => {
               </table>
             </form>
           </div>
+          <ToastContainer/>
         </div>
       </div>
     </div>

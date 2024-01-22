@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../Dashstyle/DashAllProducts.css';
 import DashNav from './DashNav';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import axios from 'axios';
 import bin from '../Images/bin.png';
 import edit from '../Images/edit.png';
@@ -11,7 +13,7 @@ import Modal from './Modal';
 const DashAllProducts = () => {
   const [products, setProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProductId, setSelectedProductId] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,46 +35,52 @@ const DashAllProducts = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedProductId(null);
+    // setSelectedProductId(null);
   };
 
   const handleDeleteProduct = async () => {
     try {
-      // Send a request to delete the product by ID
+      if (!selectedProductId) {
+        console.error('Invalid selectedProductId:', selectedProductId);
+        return;
+      }
+  
       const response = await axios.delete(`http://localhost:8001/products/deleteproduct/${selectedProductId}`);
-
+  
       if (response.status === 200) {
         toast.success('Product deleted successfully');
-        // Optionally, you can refetch the products after deletion
-        // to update the product list displayed on the page.
-        const updatedProducts = await axios.get('http://localhost:8001/products/getproducts');
-        setProducts(updatedProducts.data);
+  
+        // Remove the deleted product from the local state
+        setProducts(prevProducts => prevProducts.filter(product => product._id !== selectedProductId));
       } else {
         toast.error('Failed to delete product');
       }
-
+  
       closeModal();
     } catch (error) {
       console.error('Error deleting product:', error);
       toast.error('Error deleting product. Please try again later.');
     }
   };
-
+  
   return (
     <div className='prodash'>
       <DashNav/>
       <div className='title'>All Products </div>
       <div className='prodcardmain'>
-        {products.map(product => (
-          <div key={product._id} className='prodcard'>
-            <img src={product.image} className='dashprodimg' alt={product.name} />
-            <div className='proddiv2'>
-              <span className='smalltitle'>{product.name}</span>
-              <img src={edit} className='editmg' alt='Edit' onClick={() => openModal(product._id)} />
-              <img src={bin} className='deletemg' alt='Delete' onClick={() => handleDeleteProduct(product._id)} />
-            </div>
-          </div>
-        ))}
+      {products.map(product => (
+  <div key={product._id} className='prodcard'>
+    <img src={product.image} className='dashprodimg' alt={product.name} />
+    <div className='proddiv2'>
+      <span className='smalltitle'>{product.name}</span>
+      <img src={edit} className='editmg' alt='Edit' onClick={() => openModal(product._id)} />
+      <img src={bin} className='deletemg' alt='Delete' onClick={() => handleDeleteProduct(product._id)} />
+    </div>
+    <ToastContainer/>
+
+  </div>
+))}
+
       </div>
 
       {/* Render the Modal component */}
