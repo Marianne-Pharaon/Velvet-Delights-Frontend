@@ -4,6 +4,8 @@ import NavBar from './NavBar';
 import MiniFooter from './MiniFooter';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { fillings, toppings, sizes, flavours } from './options';
 
@@ -37,10 +39,10 @@ const Customorder = () => {
             // formData.append("totalPrice", price);
             // formData.append("Order", selectedOptions);
             formData.append("user_id",100 );
-            formData.append("flavor",setFlavourOption );
-            formData.append("topping",setToppingOption );
-            formData.append("filling",setFillingOption );
-            formData.append("size",setSizeOption );
+            formData.append("flavor", JSON.stringify(flavourOption));
+            formData.append("topping", JSON.stringify(toppingOption));
+            formData.append("filling", JSON.stringify(fillingOption));
+            formData.append("size", JSON.stringify(SizeOption));
 
 console.log(formData);
             const response = await axios.post("http://localhost:8001/custom-orders/addcustomOrders", formData , {
@@ -57,13 +59,13 @@ console.log(formData);
                 }
 
                 console.log(data);
-                window.alert("Order added successfully!");
+               toast.success("Order added successfully!");
             } else {
                 throw new Error("Network response was not ok");
             }
         } catch (error) {
             console.error("Error:", error);
-            window.alert("Error ordering cake. Please try again later.");
+            toast.error("Error ordering cake. Please try again later.");
         }
     };
 
@@ -213,7 +215,7 @@ console.log(formData);
 
             <button  className='btn'onClick={handleOrderCake}>Place Order</button>
             </div>
-
+<ToastContainer/>
             <MiniFooter />
            </div>
     )

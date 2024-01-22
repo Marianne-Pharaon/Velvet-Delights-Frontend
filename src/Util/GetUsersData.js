@@ -25,3 +25,7 @@ export const getUserID = () => {
   }
   return null;
 };
+
+export const clearUserData = () => {
+  localStorage.removeItem('authToken');
+};

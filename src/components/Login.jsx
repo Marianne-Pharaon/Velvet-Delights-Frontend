@@ -9,6 +9,31 @@ import hide from '../Images/hide.png';
 
 import { getUserRole } from '../Util/GetUsersData'; 
 
+// const handleLogin = (e) => {
+//   e.preventDefault();
+//   axios
+//     .post(
+//       `http://localhost:8001/user/loginusers`,
+//       {
+//         email: email,
+//         Password: password,
+//       }
+//     )
+//     .then((response) => {
+//       const token = response.data.token;
+//       const id = response.data.id;
+//       toast.success("You logged in successfully!");
+//       localStorage.setItem("token", token);
+//       localStorage.setItem("id", id);
+//       navigate('/');
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching data:", error);
+//       throw error;
+//     });
+// };
+
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,7 +66,7 @@ const Login = () => {
         `http://localhost:8001/user/loginusers`,
         {
           email: email,
-          Password: password,
+          password: password,
         },
         {
           headers: {
@@ -54,13 +79,13 @@ const Login = () => {
 
       if (response.status === 200) {
         const token = data.token;
-        localStorage.setItem('secureTokenKey', token);
+        localStorage.setItem('authToken', token);
 
-        // Redirect based on user role
-        const userRole = getUserRole();
-        if (userRole === 'admin') {
+        const role = getUserRole();
+        console.log(role)
+        if (role === 'admin') {
           history.push('/DashAllProducts');
-        } else {
+        } else if (role === 'user'){
           history.push('/HomePage');
         }
 
@@ -73,6 +98,12 @@ const Login = () => {
         setError('Incorrect email or password. Please try again.');
         toast.error('Incorrect email or password. Please try again.');
       } else {
+          console.error("Error:", error);
+          console.log("Response data:", error.response.data);
+          console.log("Response status:", error.response.status);
+          console.log("Response headers:", error.response.headers);
+          throw error;
+       
         setError('An error occurred during login. Please try again.');
         toast.error('An error occurred during login. Please try again.');
       }

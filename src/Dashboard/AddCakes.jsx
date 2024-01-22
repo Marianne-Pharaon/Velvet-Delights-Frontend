@@ -71,6 +71,8 @@ const AddCakes = () => {
                 <div className='AddCakeborder'>
                     <form className='addform'  >
                         <table className='table'>
+                        <tbody>
+
                             <tr>
                                 <td className='addtxtdeco'>Cake Name</td>
                                 <td>
@@ -141,6 +143,7 @@ const AddCakes = () => {
                                     <button className='btn'onClick={handleAddCake}>Add</button>
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                     </form>
                     <ToastContainer />
