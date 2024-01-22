@@ -35,23 +35,25 @@ const DashAllProducts = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    // setSelectedProductId(null);
+    setSelectedProductId(null);
   };
 
-  const handleDeleteProduct = async () => {
+  const handleDeleteProduct = async (product) => {
+    console.log(product);
+    const Id= product._id;
     try {
-      if (!selectedProductId) {
-        console.error('Invalid selectedProductId:', selectedProductId);
-        return;
-      }
+      // if (!selectedProductId) {
+      //   console.error('Invalid selectedProductId:', selectedProductId);
+      //   return;
+      // }
   
-      const response = await axios.delete(`http://localhost:8001/products/deleteproduct/${selectedProductId}`);
+      const response = await axios.delete(`http://localhost:8001/products/deleteproducts/${Id}`);
   
       if (response.status === 200) {
         toast.success('Product deleted successfully');
   
         // Remove the deleted product from the local state
-        setProducts(prevProducts => prevProducts.filter(product => product._id !== selectedProductId));
+        // setProducts(prevProducts => prevProducts.filter(product => product._id !== selectedProductId));
       } else {
         toast.error('Failed to delete product');
       }
@@ -74,7 +76,7 @@ const DashAllProducts = () => {
     <div className='proddiv2'>
       <span className='smalltitle'>{product.name}</span>
       <img src={edit} className='editmg' alt='Edit' onClick={() => openModal(product._id)} />
-      <img src={bin} className='deletemg' alt='Delete' onClick={() => handleDeleteProduct(product._id)} />
+      <img src={bin} className='deletemg' alt='Delete' onClick={() => handleDeleteProduct(product)} />
     </div>
     <ToastContainer/>
 

@@ -14,26 +14,20 @@ const AddCakes = () => {
     const [image, setImage] = useState("");
     const [name, setCakeName] = useState('');
     const [description, setDescription] = useState('');
-    const [size, setSize] = useState('');
-    // const [price, setPrice] = useState('');
+    // const [size, setSize] = useState('');
+    const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
 
     const handleAddCake = async (event) => {
         event.preventDefault();
-        // const parsedPrice = parseFloat(price);
-
-        // if (isNaN(parsedPrice)) {
-        //   // Handle the case where price is not a valid number
-        //   window.alert("Please enter a valid numeric price.");
-        //   return;
-        // }
+        
         try {
           const formData = new FormData();
           formData.append("image", image);
           formData.append("name", name);
           formData.append("description", description);
           formData.append("category", category);
-        //   formData.append("price", parseFloat(setPrice));
+          formData.append("price", parseFloat(price));
       
           const response = await axios.post(
             "http://localhost:8001/products/addproduct",
@@ -48,18 +42,18 @@ const AddCakes = () => {
           if (response.status === 201) {
             const data = response.data;
       
-            // if (data.price) {
-            //   setPrice(data.price);
-            // }
+            if (data.price) {
+              setPrice(data.price);
+            }
       
             console.log(formData);
-            window.alert("Cake added successfully!");
+            toast.success("Cake added successfully!");
           } else {
             throw new Error("Network response was not ok");
           }
         } catch (error) {
           console.error("Error:", error);
-          window.alert("Error adding cake. Please try again later.");
+        toast.error("Error adding cake. Please try again later.");
         }
       };
       
@@ -98,19 +92,7 @@ const AddCakes = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className='addtxtdeco'>Size</td>
-                                <td>
-                                    <textarea
-                                        className='dashinputs'
-                                        rows="1"
-                                        cols="4"
-                                        value={size}
-                                        onChange={(e) => setSize(e.target.value)}
-                                    ></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                {/* <td className='addtxtdeco'>Price</td>
+                                <td className='addtxtdeco'>Price</td>
                                 <td>
                                     <textarea
                                         className='dashinputs'
@@ -119,7 +101,7 @@ const AddCakes = () => {
                                         value={price}
                                         onChange={(e) => setPrice(e.target.value)}
                                     ></textarea>
-                                </td> */}
+                                </td>
                             </tr>
                             <tr>
                                 <td className='addtxtdeco'>Image</td>

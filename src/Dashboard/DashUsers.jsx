@@ -50,6 +50,7 @@ const DashUsers = () => {
                 <td className='utableth'>{user.email}</td>
                 <td className='utableth'>{user.address}</td>
                 <td className='utableth'>{user.age}</td>
+
                 <td className='utableth'>
                   <button onClick={() => handleDeleteUser(user._id)}>
                     Delete

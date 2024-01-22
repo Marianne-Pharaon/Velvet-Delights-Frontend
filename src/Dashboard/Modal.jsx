@@ -8,6 +8,7 @@ const Modal = ({ closeModal, productId }) => {
   const [name, setCakeName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
+  const [price, setPrice] = useState('');
 
   
   const handleUpdateCake = async (event) => {
@@ -20,6 +21,7 @@ const Modal = ({ closeModal, productId }) => {
           name: name,
           description: description,
           category: category,
+          price:price,
           // Add other fields you want to update
         }
       );
@@ -73,18 +75,18 @@ const Modal = ({ closeModal, productId }) => {
                     ></textarea>
                   </td>
                 </tr>
-                {/* <tr>
-                  <td className='addtextdecomodal'>Size</td>
+                <tr>
+                  <td className='addtextdecomodal'>Price</td>
                   <td>
                     <textarea
                       className='dashinputs'
                       rows="1"
                       cols="4"
-                      value={size}
-                      onChange={(e) => setSize(e.target.value)}
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                     ></textarea>
                   </td>
-                </tr> */}
+                </tr>
                 <tr>
                 </tr>
                 <tr>
