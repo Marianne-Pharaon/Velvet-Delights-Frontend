@@ -1,5 +1,5 @@
 .w-screen{
-    background-image: url('C:\Users\CompuTop\Desktop\Velvet Delights\velvet-delights\src\Images\header.png');  
+    background-image: url('../Images/header.png');  
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
