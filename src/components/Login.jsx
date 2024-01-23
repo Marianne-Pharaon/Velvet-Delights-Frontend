@@ -79,7 +79,9 @@ const Login = () => {
 
       if (response.status === 200) {
         const token = data.token;
+        console.log(data);
         localStorage.setItem('authToken', token);
+        localStorage.setItem('user_id', data.data._id);
 
         const role = getUserRole();
         console.log(role)

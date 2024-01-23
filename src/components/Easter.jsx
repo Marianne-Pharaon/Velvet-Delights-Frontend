@@ -1,54 +1,45 @@
-import React from 'react';
-import style3 from '../style/AllProducts.css'
+import React, { useState, useEffect } from 'react';
+import style3 from '../style/AllProducts.css';
 import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
-
-
-import image1 from '../Images/cheescake1.jpg'
-import image2 from '../Images/cheescake2.jpg'
-import image3 from '../Images/cake3.jpg'
-import image4 from '../Images/cake4.jpg'
-import image5 from '../Images/cake5.jpg'
-import image6 from '../Images/cake6.jpg'
+import axios from 'axios';
 
 const Easter = () => {
+  const [products, setProducts] = useState([]);
+  const categoryName = 'easter'; 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8001/products/category/${categoryName}`);
+        
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [categoryName]);
+
   return (
     <div>
       <NavBar />
 
       <div className='maincatalog1'>
-
-        <div className='title'>Easter Cakes</div>
-       
-
-
+        <div className='title'>{categoryName} Cakes</div>
 
         <div className='catimgs'>
-
-          <div className='row1'>
-            <img src={image1} className='pimgsize' />
-            <img src={image2} className='pimgsize' />
-            <img src={image3} className='pimgsize' />
-
-          </div>
-          <div className='row2'>
-            <img src={image4} className='pimgsize' />
-            <img src={image5} className='pimgsize' />
-            <img src={image6} className='pimgsize' />
-          </div>
-          <div className='row1'>
-            <img src={image1} className='pimgsize' />
-            <img src={image2} className='pimgsize' />
-            <img src={image3} className='pimgsize' />
-
-          </div>
-
+          {products.map((product) => (
+            <div className='row1' key={product._id}>
+              <img src={product.image} className='pimgsize' alt={product.name} />
+            </div>
+          ))}
         </div>
       </div>
       <MiniFooter />
     </div>
-  )
-}
+  );
+};
 
-export default Easter
-
+export default Easter;
