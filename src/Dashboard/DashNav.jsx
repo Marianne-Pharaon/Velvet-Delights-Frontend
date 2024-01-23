@@ -23,7 +23,7 @@ const DashNav = () => {
         </div>
         <div
           onClick={() => setOpen(!open)}
-          className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'
+          className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden '
         >
           <ion-icon name={open ? 'close' : 'menu'}></ion-icon>
         </div>
@@ -33,11 +33,11 @@ const DashNav = () => {
           }`}
         >
           {Links.map((link) => (
-            <li key={link.name} className='md:ml-8 text-xl md:my-0 my-7'>
+            <li key={link.name} className='md:ml-8 text-xl md:my-0 my-7 no-underline'>
               <a
                 href={link.link}
                 style={{ color: 'rgb(187, 0, 9)' }}
-                className='hover:text-gray-800 duration-500'
+                className='hover:text-gray-800 duration-500 no-underline'
               >
                 {link.name }
               </a>

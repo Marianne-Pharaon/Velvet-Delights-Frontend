@@ -29,6 +29,7 @@ const Modal = ({ closeModal, productId }) => {
       if (response.status === 200) {
         toast.success("Cake updated successfully!");
         closeModal();
+        // fetchProducts();
       } else {
         throw new Error("Network response was not ok");
       }

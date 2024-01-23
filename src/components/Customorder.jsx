@@ -35,10 +35,11 @@ const Customorder = () => {
         try {
             const formData = new FormData();
             formData.append("image", image);
-            formData.append("description", setDescription);
+            formData.append("description", description);
             // formData.append("totalPrice", price);
             // formData.append("Order", selectedOptions);
-            formData.append("user_id",100 );
+            console.log( flavourOption, toppingOption,SizeOption,fillingOption);
+            formData.append("user_id",localStorage.getItem("user_id")); 
             formData.append("flavor", JSON.stringify(flavourOption));
             formData.append("topping", JSON.stringify(toppingOption));
             formData.append("filling", JSON.stringify(fillingOption));

@@ -46,7 +46,7 @@ function NavBar() {
     <div className='shadow-md w-full fixed top-0 left-0 '>
       <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[poppins] text-gray-800'>
-          <span className='text-3xl text-indigo-600 mr-1 pt-2' onClick={handleLogoClick}>
+          <span className=' text-3xl text-indigo-600 mr-1 pt-2' onClick={handleLogoClick}>
             <img src={image} alt='Logo' style={{ width: '250px', height: '50px' }} />
           </span>
         </div>
@@ -62,7 +62,7 @@ function NavBar() {
           }`}
         >
          {Links.map((link) => (
-  <li key={link.name} className='md:ml-8 text-xl md:my-0 my-7'>
+  <li key={link.name} className='md:ml-8 text-xl md:my-0 my-7 no-underline'>
     {link.onClick ? (
       <a
         href={link.link}
@@ -71,7 +71,7 @@ function NavBar() {
           link.onClick();
         }}
         style={{ color: 'rgb(187, 0, 9)', cursor: 'pointer' }}
-        className='hover:text-gray-800 duration-500'
+        className='hover:text-gray-800 duration-500 no-underline'
       >
         {link.name}
       </a>
@@ -79,7 +79,7 @@ function NavBar() {
       <Link
         to={link.link}
         style={{ color: 'rgb(187, 0, 9)', cursor: 'pointer' }}
-        className='hover:text-gray-800 duration-500'
+        className='hover:text-gray-800 duration-500 no-underline'
       >
         {link.name}
       </Link>

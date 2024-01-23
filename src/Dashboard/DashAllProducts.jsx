@@ -15,7 +15,6 @@ const DashAllProducts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState();
 
-  useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:8001/products/getproducts');
@@ -25,8 +24,10 @@ const DashAllProducts = () => {
       }
     };
 
+    useEffect(() => {
     fetchProducts();
   }, []);
+  
 
   const openModal = (productId) => {
     setIsModalOpen(true);
@@ -42,18 +43,14 @@ const DashAllProducts = () => {
     console.log(product);
     const Id= product._id;
     try {
-      // if (!selectedProductId) {
-      //   console.error('Invalid selectedProductId:', selectedProductId);
-      //   return;
-      // }
+    
   
       const response = await axios.delete(`http://localhost:8001/products/deleteproducts/${Id}`);
   
       if (response.status === 200) {
+        fetchProducts();
+
         toast.success('Product deleted successfully');
-  
-        // Remove the deleted product from the local state
-        // setProducts(prevProducts => prevProducts.filter(product => product._id !== selectedProductId));
       } else {
         toast.error('Failed to delete product');
       }
@@ -85,7 +82,6 @@ const DashAllProducts = () => {
 
       </div>
 
-      {/* Render the Modal component */}
       {isModalOpen && <Modal closeModal={closeModal} productId={selectedProductId} />}
       <ToastContainer />
     </div>

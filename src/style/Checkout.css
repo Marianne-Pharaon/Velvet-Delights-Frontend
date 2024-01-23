@@ -10,9 +10,7 @@
   
  }
 
-  /* input[type="text"]::placeholder {
-    color:rgba(215, 109, 114, 0.507);
-  } */
+ 
   
     
  .page{
@@ -152,5 +150,22 @@ color:  rgb(187, 0, 9);
     }
   .footercheckout{
     display: none;
+  }
+  .page{
+    background-color:rgb(232, 223, 223) ;
+    height:fit-content;
+  
+   }
+    .container {
+    background-color:rgb(232, 223, 223);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5px 20px 15px 20px;
+    border: 2px solid rgb(187, 0, 9);
+    border-radius: 3px;
+    margin-top: 7%;
+
+    
   }
   }

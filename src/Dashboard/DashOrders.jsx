@@ -11,7 +11,7 @@ const DashOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/custom-orders');
+        const response = await axios.get('http://localhost:8001/checkout/getcheckouts');
         setOrders(response.data);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -35,6 +35,7 @@ const DashOrders = () => {
                 <th className='utableth'>Email</th>
                 <th className='utableth'>Delivery Address</th>
                 <th className='utableth'>Due Date</th>
+                <th className='utableth'>order</th>
                 <th className='utableth'>Total Price</th>
               </tr>
             </thead>
@@ -46,6 +47,8 @@ const DashOrders = () => {
                   <td className='utableth'>{order.email}</td>
                   <td className='utableth'>{order.address}</td>
                   <td className='utableth'>{order.Due_Date}</td>
+                  <td className='utableth'>{order.total}</td>
+                  <td className='utableth'>{order.total}</td>
                   <td className='utableth'>{order.total}</td>
                 </tr>
               ))}
@@ -65,7 +68,7 @@ export default DashOrders;
 //   useEffect(() => {
 //     const fetchUsers = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:8001/checkout/getCheckoutById'); 
+//         const response = await axios.get('http://localhost:8001/checkout/getcheckouts'); 
 //         setUsers(response.data);
 //       } catch (error) {
 //         console.error('Error fetching users:', error);

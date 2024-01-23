@@ -1,30 +1,33 @@
+// ParentComponent.jsx
 import React, { useState, useEffect } from 'react';
+import Categories from './Categories';
 import style3 from '../style/AllProducts.css';
 import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
-import axios from "axios";
+import axios from 'axios';
 
-const Types = () => {
+const ParentComponent = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoryData, setCategoryData] = useState([]);
 
   useEffect(() => {
-    // Fetch data based on the selected category
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/cat_Name`);
+        const response = await axios.get(`http://localhost:8001/categories/${selectedCategory.toLowerCase()}`);
         setCategoryData(response.data.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         // Handle error
       }
     };
 
-    fetchData();
+    if (selectedCategory) {
+      fetchData();
+    }
   }, [selectedCategory]);
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+    setSelectedCategory(category.toLowerCase());
   };
 
   return (
@@ -32,21 +35,21 @@ const Types = () => {
       <NavBar />
 
       <div className='maincatalog1'>
-
-        <div className='title'>{selectedCategory || "All Products"}</div>
-
+        <div className='title'>{selectedCategory ? selectedCategory : 'All Products'}</div>
         <div className='catimgs'>
-          {/* Map over categoryData and render your products */}
-          {categoryData.map((products) => (
-            <div className='row1' key={products._id}>
-              <img src={products.image} className='pimgsize' alt={products.name} />
+          {categoryData.map((product) => (
+            <div className='row1' key={product._id}>
+              <img src={product.image} className='pimgsize' alt={product.name} />
             </div>
           ))}
         </div>
       </div>
       <MiniFooter />
+
+      {/* Render the Categories component and pass the handleCategoryClick function as a prop */}
+      <Categories onButtonClick={handleCategoryClick} />
     </div>
   );
 };
 
-export default Types;
+export default ParentComponent;
