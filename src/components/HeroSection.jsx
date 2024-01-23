@@ -1,5 +1,5 @@
 import React from 'react'
-import image1 from '../Images/header.png';
+// import image1 from '../Images/header.png';
 import style from '../style/Hero.css'
 import { Link } from 'react-router-dom';
 
