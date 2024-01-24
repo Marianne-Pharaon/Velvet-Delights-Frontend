@@ -9,6 +9,8 @@ import bin from '../Images/bin.png';
 import edit from '../Images/edit.png';
 import '../Dashstyle/modal.css';
 import Modal from './Modal'; 
+import { Puff } from 'react-loader-spinner'; 
+
 
 const DashAllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -62,11 +64,18 @@ const DashAllProducts = () => {
     }
   };
   
+  const handleUpdateCallback = () => {
+    // Fetch new data after updating
+    fetchProducts();
+  };
+  
   return (
     <div className='prodash'>
       <DashNav/>
       <div className='title'>All Products </div>
+      
       <div className='prodcardmain'>
+        
       {products.map(product => (
   <div key={product._id} className='prodcard'>
     <img src={product.image} className='dashprodimg' alt={product.name} />
@@ -82,7 +91,8 @@ const DashAllProducts = () => {
 
       </div>
 
-      {isModalOpen && <Modal closeModal={closeModal} productId={selectedProductId} />}
+      {isModalOpen && <Modal closeModal={closeModal} productId={selectedProductId}           onUpdate={handleUpdateCallback} // Pass the callback function
+/>}
       <ToastContainer />
     </div>
   );

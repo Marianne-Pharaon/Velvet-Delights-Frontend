@@ -4,7 +4,7 @@ import '../Dashstyle/modal.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Modal = ({ closeModal, productId }) => {
+const Modal = ({ closeModal, productId,onUpdate }) => {
   const [name, setCakeName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -29,7 +29,7 @@ const Modal = ({ closeModal, productId }) => {
       if (response.status === 200) {
         toast.success("Cake updated successfully!");
         closeModal();
-        // fetchProducts();
+        onUpdate(); 
       } else {
         throw new Error("Network response was not ok");
       }

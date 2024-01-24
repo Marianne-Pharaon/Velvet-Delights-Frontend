@@ -35,7 +35,7 @@
 .cakes,
 .cupcakes,
 .cookies {
-  color: rgb(187, 0, 9);
+  color: rgb(187, 0, 9) !important;
   font-size: large;
   margin-right: 10px; /* Adjust the margin */
   cursor: pointer;

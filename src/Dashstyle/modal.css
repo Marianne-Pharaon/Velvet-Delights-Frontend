@@ -84,7 +84,8 @@
 .dashinputs::placeholder {
     color: transparent; }
     .btn{
-      width: 150px !important;
+      /* width: 150px !important; */
       margin-left: 20%;
+      margin-bottom: -3%;
 
     }
