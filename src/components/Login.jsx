@@ -7,31 +7,8 @@ import style from '../style/Login.css';
 import open from '../Images/show.png';
 import hide from '../Images/hide.png';
 
-import { getUserRole } from '../Util/GetUsersData'; 
+import { getUserRole } from '../Util/GetUsersData';
 
-// const handleLogin = (e) => {
-//   e.preventDefault();
-//   axios
-//     .post(
-//       `http://localhost:8001/user/loginusers`,
-//       {
-//         email: email,
-//         Password: password,
-//       }
-//     )
-//     .then((response) => {
-//       const token = response.data.token;
-//       const id = response.data.id;
-//       toast.success("You logged in successfully!");
-//       localStorage.setItem("token", token);
-//       localStorage.setItem("id", id);
-//       navigate('/');
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching data:", error);
-//       throw error;
-//     });
-// };
 
 
 const Login = () => {
@@ -48,7 +25,7 @@ const Login = () => {
 
   const validateInput = () => {
     if (!email || !password) {
-      setError('Email and Password are required :(');
+      toast.error('Email and Password are required :(');
       return false;
     }
 
@@ -59,7 +36,12 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!validateInput()) return;
+    if (!validateInput()) {
+      toast.error("Invalid Email or Password")
+      return;
+
+    }
+
 
     try {
       const response = await axios.post(
@@ -87,7 +69,7 @@ const Login = () => {
         console.log(role)
         if (role === 'admin') {
           history.push('/DashAllProducts');
-        } else if (role === 'user'){
+        } else if (role === 'user') {
           history.push('/HomePage');
         }
 
@@ -100,14 +82,14 @@ const Login = () => {
         setError('Incorrect email or password. Please try again.');
         toast.error('Incorrect email or password. Please try again.');
       } else {
-          console.error("Error:", error);
-          console.log("Response data:", error.response.data);
-          console.log("Response status:", error.response.status);
-          console.log("Response headers:", error.response.headers);
-          throw error;
-       
-        setError('An error occurred during login. Please try again.');
-        toast.error('An error occurred during login. Please try again.');
+        toast.error('Please register before login.');
+        console.error("Error:", error);
+        console.log("Response data:", error.response.data);
+        console.log("Response status:", error.response.status);
+        console.log("Response headers:", error.response.headers);
+        throw error;
+
+
       }
     } finally {
       setLoading(false);

@@ -4,15 +4,15 @@ import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
 import axios from 'axios';
 
-const Weddings = () => {
+const Cookies = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const categoryName = 'weddings'; 
+  const categoryName = 'cookies'; 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/products/getcategory/weddings`);
+        const response = await axios.get(`http://localhost:8001/products/getcategory/cookies`);
         setProducts(response.data.data);
         console.log(response);
       } catch (error) {
@@ -30,7 +30,7 @@ const Weddings = () => {
       <NavBar />
 
       <div className='maincatalog1'>
-        <div className='title'>{categoryName} Cakes</div>
+        <div className='title'>{categoryName} </div>
 
         <div className='catimgs'>
           {loading ? (
@@ -51,4 +51,4 @@ const Weddings = () => {
   );
 };
 
-export default Weddings;
+export default Cookies;

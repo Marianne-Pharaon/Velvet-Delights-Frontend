@@ -17,9 +17,6 @@ const Customorder = () => {
     const [toppingOption, setToppingOption] = useState({})
     const [SizeOption, setSizeOption] = useState({})
     const [flavourOption, setFlavourOption] = useState({});
-
-   
-    // const [options, setOptions] = useState()
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(null);
@@ -45,7 +42,7 @@ const Customorder = () => {
             formData.append("size", JSON.stringify(SizeOption));
 
 console.log(formData);
-            const response = await axios.post("http://localhost:8001/custom-orders/addcustomOrders", formData , {
+            const response = await axios.post("https://velvetdelights-backend-4qfo.onrender.com/custom-orders/addcustomOrders", formData , {
                 headers: {
              "Content-Type":'multipart/form-data',
                 }
@@ -65,7 +62,7 @@ console.log(formData);
             }
         } catch (error) {
             console.error("Error:", error);
-            toast.error("Please login to continue.");
+            toast.error("Can't add Order Please try again later.");
         }
     };
 
@@ -75,21 +72,6 @@ console.log(formData);
         flavour: [],
         size: [],
     });
-
-    const handleCheckboxChange = (category, value) => {
-        // Clone the current state
-        const updatedOptions = { ...selectedOptions };
-
-        // Check if the value is already selected, and toggle it
-        if (updatedOptions[category].includes(value)) {
-            updatedOptions[category] = updatedOptions[category].filter((item) => item !== value);
-        } else {
-            updatedOptions[category] = [...updatedOptions[category], value];
-        }
-
-        // Update the state
-        setSelectedOptions(updatedOptions);
-    };
 
 
 
@@ -111,7 +93,6 @@ console.log(formData);
                         name='flavour'
                         value={flavour.price}
                         onChange={(e) => {
-                            // console.log(filling)
                             setFlavourOption(flavour)
                         }}
                     />
@@ -131,7 +112,6 @@ console.log(formData);
                         name='filling'
                         value={filling.price}
                         onChange={(e) => {
-                            // console.log(filling)
                             setFillingOption(filling)
                         }}
                     />
@@ -152,7 +132,6 @@ console.log(formData);
                         name='Topping'
                         value={toppings.price}
                         onChange={(e) => {
-                            // console.log(toppings)
                             setToppingOption(toppings)
                         }}
                     />
@@ -213,7 +192,7 @@ console.log(formData);
 
 
 
-            <button  className='btn'onClick={handleOrderCake}>Place Order</button>
+            <button  className='btn1'onClick={handleOrderCake}>Place Order</button>
             </div>
 <ToastContainer/>
             <MiniFooter />

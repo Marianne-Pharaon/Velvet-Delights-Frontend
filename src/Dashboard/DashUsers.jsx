@@ -40,6 +40,7 @@ const DashUsers = () => {
               <th className='utableth'>Phone Number</th>
               <th className='utableth'>Email</th>
               <th className='utableth'>Age</th>
+              <th className='utableth'>Role</th>
               <th className='utableth'>Delete User</th>
             </tr>
             {users.map((user) => (
@@ -48,6 +49,7 @@ const DashUsers = () => {
                 <td className='utableth'>{user.phoneNumber}</td>
                 <td className='utableth'>{user.email}</td>
                 <td className='utableth'>{user.age}</td>
+                <td className='utableth'>{user.role}</td>
 
                 <td className='utableth'>
                   <button onClick={() => handleDeleteUser(user._id)}>

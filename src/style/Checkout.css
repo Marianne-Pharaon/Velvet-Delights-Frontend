@@ -27,17 +27,23 @@
     margin: 0 -16px;
 
   }
-  
+  .el{
+    margin-top: 18%;
+  }
   .col-25 {
     -ms-flex: 25%; 
     flex: 25%;
     margin-top: 3.5%;
 
   }
+  .pymnt{
+    margin-top: 15%;
+  }
   
   .col-50 {
     -ms-flex: 50%; 
     flex: 50%;
+    
 
   }
   

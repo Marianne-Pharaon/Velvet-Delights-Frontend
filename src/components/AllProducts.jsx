@@ -3,9 +3,11 @@ import { useHistory, Link } from "react-router-dom";
 import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
 import axios from "axios";
+import { Puff } from 'react-loader-spinner'; 
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const history = useHistory();
 
@@ -16,23 +18,25 @@ const AllProducts = () => {
           `http://localhost:8001/products/getproducts`
         );
         setProducts(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching Products:", error);
         setError("Error fetching products. Please try again later.");
+        setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, []);  
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const handleProductClick = (productId) => {
-    // Navigate to the Cake page with the product ID
     history.push(`/Cake/${productId}`);
+    localStorage.setItem("productId", productId);
   };
-  
 
   return (
     <div>
@@ -42,32 +46,37 @@ const AllProducts = () => {
         <div className='title'>Our Catalog</div>
         <div className='selectionband1'>
           <div className='cakes'>
-            <Link to="/Type">
+            
               <button className='cakes'>Cakes</button>
-            </Link>
+         
           </div>
           <div className='cupcakes'>
-            <Link to="/Type">
+            <Link to="/Cupcakes">
               <button className='cupcakes'>Cupcakes</button>
             </Link>
           </div>
           <div className='cookies'>
-            <Link to="/Type">
+            <Link to="/Cookies">
               <button className='cookies'>Cookies</button>
             </Link>
           </div>
         </div>
 
-        <div className='catimgs'>
-          {products.map((product) => (
-            <div className='row1' key={product._id}>
-              {/* Pass the product ID to handleProductClick */}
-              <button onClick={() => handleProductClick(product._id)}>
-                <img src={product.image} className='pimgsize' alt={product.name} />
-              </button>
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="loader">
+            <Puff color="#00BFFF" height={100} width={100} />
+          </div>
+        ) : (
+          <div className='catimgs'>
+            {products.map((product) => (
+              <div className='row1' key={product._id}>
+                <button onClick={() => handleProductClick(product._id)}>
+                  <img src={product.image} className='pimgsize' alt={product.name || 'Product Image'} />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <MiniFooter />
     </div>

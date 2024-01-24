@@ -90,8 +90,18 @@ margin-bottom: 10%;
     font-weight: 400;
     color:  rgb(187, 0, 9);
  }
-
- 
+.btn1{
+ border: 3px solid  rgb(187, 0, 9);
+ color: rgb(187, 0, 9);
+ background-color: transparent;
+ width: 40%;
+ height: 70px;
+ margin-left: 20%;
+ margin-bottom: 10%;
+ font-family: 'Oooh Baby', sans-serif;
+ font-size: 29px;
+ font-weight: 300;
+}
     
  @media (max-width: 700px) {
   .orderform {

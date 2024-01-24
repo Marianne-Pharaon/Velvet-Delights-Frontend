@@ -12,13 +12,14 @@ import { Toast } from 'bootstrap';
 
 
 
+
 const Cake = () => {
   // Retrieve the product ID from the URL
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [error, setError] = useState(null);
-  const {Id} = useParams();
   const history = useHistory();
+  console.log(productId)
 
 
   useEffect(() => {
@@ -40,56 +41,23 @@ const Cake = () => {
   }, [productId]);
 
 
-  // const addToCart = async () => {
-  //   try {
-  //     await axios.post('http://localhost:8001/cart/addcarts', {
-  //       user_id: localStorage.getItem("user_id"),
-  //       products_id: productId,
-        
-  //       // price: product.price,
-  //       // product_name: product.name,
-  //     });
-
-  //     toast.success('Product added to cart successfully');
-  //     if (!localStorage.getItem("Ids")) {
-  //       localStorage.setItem("Ids", Id);
-  //       history.push("/cart");
-  //     } else {
-  //       if (localStorage.getItem("Ids").split(",").includes(Id)) {
-  //         toast.error("Already in your cart");
-  //         return;
-  //       }
-  //       let updatedId = localStorage.getItem("Ids") + `,${Id}`;
-  //       localStorage.setItem("Ids", updatedId);
-  //     }
   
-
-
-      
-  //   } catch (error) {
-  //     console.error('Error adding product to cart:', error);
-  //     toast.error('Error adding product to cart. Please try again later.');
-  //   }
-  // };
 
 
   const addToCart = async () => {
     try {
       const productInfo = {
-        productId: productId,
         name: product.name,
         price: product.price,
         description: product.description,
         image: product.image,
-        // Add other necessary product information
       };
-  
-      // Convert the product information to a string and save it in local storage
+
+
       localStorage.setItem("product_cake", JSON.stringify(productInfo));
   
       toast.success('Product added to cart successfully');
       
-      history.push("/Checkout");
     } catch (error) {
       console.error('Error adding product to cart:', error);
       toast.error('Error adding product to cart. Please try again later.');

@@ -8,6 +8,7 @@ const DashNav = () => {
     { name: 'Users', link: '/DashUsers' },
     { name: 'Add Cakes', link: '/AddCakes' },
     { name: 'Orders', link: '/DashOrders' },
+    { name: 'Add Admin', link: '/AddAdmin' },
    
   ];
 

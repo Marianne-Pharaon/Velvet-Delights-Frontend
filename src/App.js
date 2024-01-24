@@ -12,7 +12,7 @@ import Weddings from './components/Weddings';
 import Birthdays from './components/Birthdays';
 import Christmas from './components/Christmas';
 import Easter from './components/Easter';
-import Types from './components/Types';
+import Cookies from './components/Cookies';
 import PageNotFound from './components/PageNotFound';
 import SMTP from './components/SMTP';
 import AboutUsPage from './components/AboutUsPage';
@@ -21,6 +21,8 @@ import AddCakes from './Dashboard/AddCakes';
 import DashAllProducts from './Dashboard/DashAllProducts';
 import DashOrders from './Dashboard/DashOrders';
 import DashUsers from './Dashboard/DashUsers';
+import AddAdmin from './Dashboard/AddAdmin';
+import Cupcakes from './components/Cupcakes';
 
 
 function App() {
@@ -43,10 +45,11 @@ function App() {
  <Route path="/Weddings"><Weddings/></Route> 
  <Route path="/Easter"><Easter/></Route> 
  <Route path="/Christmas"><Christmas/></Route> 
- <Route path="/Types"><Types/></Route> 
+ <Route path="/Cookies"><Cookies/></Route> 
  <Route path="/SMTP"><SMTP/></Route> 
  <Route path="/AboutUsPage"><AboutUsPage/></Route> 
  <Route path="/Cake/:productId"><Cake/></Route> 
+ <Route path="/Cupcakes"><Cupcakes/></Route> 
 
 
 
@@ -57,6 +60,7 @@ function App() {
         <Route path="/DashAllProducts"><DashAllProducts/></Route>
         <Route path="/DashOrders"><DashOrders/></Route>
         <Route path="/DashUsers"><DashUsers/></Route> 
+        <Route path="/AddAdmin"><AddAdmin/></Route> 
          <Route path="*"><PageNotFound/></Route> 
 
         
