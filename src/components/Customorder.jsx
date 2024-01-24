@@ -37,7 +37,6 @@ const Customorder = () => {
             formData.append("image", image);
             formData.append("description", description);
             // formData.append("totalPrice", price);
-            // formData.append("Order", selectedOptions);
             console.log( flavourOption, toppingOption,SizeOption,fillingOption);
             formData.append("user_id",localStorage.getItem("user_id")); 
             formData.append("flavor", JSON.stringify(flavourOption));
@@ -66,7 +65,7 @@ console.log(formData);
             }
         } catch (error) {
             console.error("Error:", error);
-            toast.error("Error ordering cake. Please try again later.");
+            toast.error("Please login to continue.");
         }
     };
 
