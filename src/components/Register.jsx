@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
   
-    if (!name || !address || !age || !email || !password || !phoneNumber) {
+    if (!name  || !age || !email || !password || !phoneNumber) {
       setError('All fields are required');
       setLoading(false);
       return;
@@ -38,7 +38,6 @@ const Register = () => {
         console.log('Registration successful');
         history.push('/Login');
         setName('');
-        setAddress('');
         setAge('');
         setEmail('');
         setPassword('');
@@ -70,13 +69,7 @@ const Register = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <input
-            type="text"
-            className='redLineInput'
-            placeholder='Address'
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+          
           <input
             type="text"
             className='redLineInput'

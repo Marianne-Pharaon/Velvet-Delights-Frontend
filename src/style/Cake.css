@@ -91,6 +91,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 6%;
+       
     }
     .cborder{
         height: 60%;
@@ -121,8 +122,9 @@
         justify-content: center;
         color:  rgb(187, 0, 9);
         margin-left: 5%;
-        margin-top: 12%;
         height: 45%;
+        margin-top: 18%;
+        width: 90%;
     
     }
  
@@ -140,6 +142,7 @@
         text-align: center;
         margin-left: 5%;
         margin-top: 12%;
+        margin-bottom: 12%;
     
     
     

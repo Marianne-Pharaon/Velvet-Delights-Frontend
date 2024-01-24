@@ -39,7 +39,6 @@ const DashUsers = () => {
               <th className='utableth'>Name</th>
               <th className='utableth'>Phone Number</th>
               <th className='utableth'>Email</th>
-              <th className='utableth'>Address</th>
               <th className='utableth'>Age</th>
               <th className='utableth'>Delete User</th>
             </tr>
@@ -48,7 +47,6 @@ const DashUsers = () => {
                 <td className='utableth'>{user.fullName}</td>
                 <td className='utableth'>{user.phoneNumber}</td>
                 <td className='utableth'>{user.email}</td>
-                <td className='utableth'>{user.address}</td>
                 <td className='utableth'>{user.age}</td>
 
                 <td className='utableth'>
