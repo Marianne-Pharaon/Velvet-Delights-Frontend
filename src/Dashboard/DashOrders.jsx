@@ -11,7 +11,7 @@ const DashOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('${process.env.REACT_APP_API_URL}/checkout/getcheckouts');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/checkout/getcheckouts`);
         setOrders(response.data);
       } catch (error) {
         console.error('Error fetching orders:', error);
