@@ -12,7 +12,7 @@ const Cookies = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/products/getcategory/cookies`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/getcategory/cookies`);
         setProducts(response.data.data);
         console.log(response);
       } catch (error) {

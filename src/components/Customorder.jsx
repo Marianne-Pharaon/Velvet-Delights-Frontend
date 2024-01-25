@@ -19,7 +19,7 @@ const Customorder = () => {
     const [flavourOption, setFlavourOption] = useState({});
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(null);
+    const [totalPrice, setTotalPrice] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -41,8 +41,18 @@ const Customorder = () => {
             formData.append("filling", JSON.stringify(fillingOption));
             formData.append("size", JSON.stringify(SizeOption));
 
+            const totalPrice = (
+                parseFloat(fillingOption.price) +
+                parseFloat(toppingOption.price) +
+                parseFloat(SizeOption.price) +
+                parseFloat(flavourOption.price)
+            ).toFixed(2);
+            setTotalPrice(totalPrice);
+
+            formData.append("totalPrice", totalPrice)
+
 console.log(formData);
-            const response = await axios.post("https://velvetdelights-backend-4qfo.onrender.com/custom-orders/addcustomOrders", formData , {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/custom-orders/addcustomOrders`, formData , {
                 headers: {
              "Content-Type":'multipart/form-data',
                 }
@@ -51,9 +61,6 @@ console.log(formData);
             if (response.status === 201) {
                 const data = response.data;
 
-                if (data.price) {
-                    setPrice(data.price);
-                }
 
                 console.log(data);
                toast.success("Order added successfully!");
@@ -180,8 +187,7 @@ console.log(formData);
 
             <div className='flexbox'>
             <label className='txtdeco1'>Price :</label>
-            {price !== null ? `$${price}` : 'Calculating...'}
-            <label className='txtdeco2'>{price}</label>
+            <label className='txtdeco1'>{totalPrice !== null ? `$${totalPrice}` : 'Calculating...'} </label>          
 </div>
 
 
