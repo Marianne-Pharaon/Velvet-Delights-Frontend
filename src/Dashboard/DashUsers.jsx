@@ -8,7 +8,7 @@ const DashUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:8001/user/getusers');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/getusers`);
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -21,7 +21,7 @@ const DashUsers = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:8001/user/deleteusers/${userId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/user/deleteusers/${userId}`);
       fetchUsers();
     } catch (error) {
       console.error('Error deleting user:', error);

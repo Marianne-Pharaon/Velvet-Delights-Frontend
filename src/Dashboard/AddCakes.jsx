@@ -30,7 +30,7 @@ const AddCakes = () => {
           formData.append("price", parseFloat(price));
       
           const response = await axios.post(
-            "http://localhost:8001/products/addproduct",
+            `${process.env.REACT_APP_API_URL}/products/addproduct`,
             formData,
             {
               headers: {
@@ -139,13 +139,4 @@ const AddCakes = () => {
 export default AddCakes;
 
 
- {/* <input type="checkbox" id="myCheckbox" /> Cake<br />
-                                    <input type="checkbox" id="myCheckbox" className='dashinputs' /> Cupcake<br />
-                                    <input type="checkbox" id="myCheckbox" className='check' /> Cookies
-                                </td>
-                                <td className='check'>
-                                    <input type="checkbox" id="myCheckbox" /> Birthdays<br />
-                                    <input type="checkbox" id="myCheckbox" /> Weddings<br />
-                                    <input type="checkbox" id="myCheckbox" /> Christmas<br />
-                                    <input type="checkbox" id="myCheckbox" /> Easter
-                                </td> */}
+ 

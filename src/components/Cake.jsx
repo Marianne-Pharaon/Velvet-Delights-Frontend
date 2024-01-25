@@ -25,7 +25,7 @@ const Cake = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/products/getproducts/${productId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/getproducts/${productId}`);
         console.log('Response data:', response.data);
 
         setProduct(response.data.data);

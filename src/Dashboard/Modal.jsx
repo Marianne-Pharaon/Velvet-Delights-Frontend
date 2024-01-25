@@ -16,7 +16,7 @@ const Modal = ({ closeModal, productId,onUpdate }) => {
   
     try {
       const response = await axios.put(
-        `http://localhost:8001/products/updateproducts/${productId}`,
+        `${process.env.REACT_APP_API_URL}/products/updateproducts/${productId}`,
         {
           name: name,
           description: description,

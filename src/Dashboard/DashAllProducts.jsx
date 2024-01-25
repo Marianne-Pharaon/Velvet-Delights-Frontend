@@ -19,7 +19,7 @@ const DashAllProducts = () => {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/products/getproducts');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/getproducts`);
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -47,7 +47,7 @@ const DashAllProducts = () => {
     try {
     
   
-      const response = await axios.delete(`http://localhost:8001/products/deleteproducts/${Id}`);
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/products/deleteproducts/${Id}`);
   
       if (response.status === 200) {
         fetchProducts();

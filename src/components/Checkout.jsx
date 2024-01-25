@@ -4,240 +4,224 @@ import MiniFooter from './MiniFooter';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { getUserID } from '../Util/GetUsersData';
-import { Link } from 'react-router-dom';
 
-import style from '../style/Checkout.css';
+import '../style/Checkout.css';
 
 const Checkout = () => {
-  const [products, setProducts] = useState([]);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    dueDate: '',
-    email: '',
-    address: '',
-    paymentOption: 'cashOnDel',
-    card: {
-      nameOnCard: '',
-      cardNumber: '',
-    },
-  });
-
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [Due_date, setDue_date] = useState('');
+  const [email, setEmail] = useState('');
+  const user_id = getUserID();
   const [product_cake, setProduct_cake] = useState([]);
   const [error, setError] = useState(null);
+  const [Payment, setPayment] = useState(null);
+  const [nameOnCard, setNameOnCard] = useState(null);
+  const [cardNumber, setCardNumber] = useState(null);
+  const handleCheckout = async (e) => {
+    e.preventDefault();
 
-  const user_id = getUserID();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8001/products/getproducts`);
-        setProducts(response.data);
-  
-        const storedIds = localStorage.getItem('product_cake') || '';
-        const productIdsArray = storedIds.split(',');
-  
-        // Filter the products based on the stored product IDs
-        const cartProducts = products.filter(product => productIdsArray.includes(product._id));
-        setProduct_cake(cartProducts);
-      } catch (error) {
-        console.error('Error fetching Products:', error);
-        setError('Error fetching products. Please try again later.');
-      }
-    };
-  
-    fetchProducts();
-  }, [user_id]);
-
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-const product = localStorage.getItem("product_cake");
-const productName = product.name;
-const productPrice = product.price;
-
-
-console.log(productName)
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    if (!name || !email || !address || !Due_date) {
+      setError('All fields are required');
+      return;
+    }
 
     try {
       const response = await axios.post(`http://localhost:8001/checkout/addcheckouts`, {
-        userData: formData,
-        cartItems: product_cake,
+        user_id: user_id,
+        fullName: name,
+        address,
+        email,
+        Due_date,
+        paymentOption: 'cashOnDel',
+        card: {
+          nameOnCard: '',
+          cardNumber: '',
+        },
       });
-console.log(response)
-      toast.success('Order placed successfully!');
-      localStorage.removeItem('product_cake');
-      setProduct_cake([]);
+      console.log(response);
+
+      if (response.status === 201) {
+        toast.success('Order Added Successfully');
+
+        console.log('Order added successfully');
+        setName('');
+        setEmail('');
+        setDue_date('');
+        setAddress('');
+        setNameOnCard ('');
+        setCardNumber ('')
+      } else {
+        setError('Unable to place order');
+        toast.error('Unable to place order');
+      }
     } catch (error) {
-      console.error('Error placing order:', error);
-      toast.error('Error placing order. Please try again later.');
+      console.error('Error:', error);
     }
   };
 
-  const productIds = localStorage.getItem("product_cake") || '';
-const productIdsArray = productIds.split(',');
+  
 
-const productsInCart = products.filter(products => productIdsArray.includes(products._id));
+  const [customOrders, setCustomOrders] = useState([]);
 
-const totalCartPrice = productsInCart.reduce((total, products) => {
-  return total + (product?.price || 0);
-}, 0);
-// ...
+  const fetchCustomOrders = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8001/custom-orders/getcustomOrders/${user_id}`);
+      console.log(response);
+      const ordersArray = Array.isArray(response.data) ? response.data : [];
+      setCustomOrders(ordersArray);
+    } catch (error) {
+      console.error('Error fetching custom orders:', error);
+      // Handle error
+      
+    }
+  };
 
-console.log("productIds", productIds); 
-console.log("productIdsArray", productIdsArray); 
-console.log("productsInCart", productsInCart); 
+  useEffect(() => {
+    fetchCustomOrders(); 
+  }, [user_id]);
 
-
-
-
-
-    return (
-        <div className="page">
-            <NavBar />
-            <div className="cbody">
+  return (
+    <div className="page">
+      <NavBar />
+      <div className="cbody">
+        <div className="row">
+          <div className="col-75">
+            <div className="container">
+              <form className="cform" onSubmit={handleCheckout}>
                 <div className="row">
-                    <div className="col-75">
-                        <div className="container">
-                            <form className="cform" onSubmit={handleFormSubmit}>
-                                <div className="row">
-                                    <div className="col-50">
-                                        <h3>Checkout</h3>
-                                        <br />
-                                        <label htmlFor="fname">Full Name</label>
-                                        <input
-                                            type="text"
-                                            id="fname"
-                                            name="fullName"
-                                            value={formData.fullName}
-                                            onChange={handleChange}
-                                        />
-                                        <label htmlFor="date">Due Date</label>
-                                        <input
-                                            type="date"
-                                            id="date"
-                                            name="dueDate"
-                                            value={formData.dueDate}
-                                            onChange={handleChange}
-                                        />
-                                        <h3 className='pymnt'>Payment</h3>
-                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <input
-                                                    type="radio"
-                                                    id="cashOnDel"
-                                                    name="paymentOption"
-                                                    value="cashOnDel"
-                                                    checked={formData.paymentOption === "cashOnDel"}
-                                                    onChange={handleChange}
-                                                />
-                                                <label htmlFor="cashOnDel" style={{ marginLeft: '8px' }}>Cash on Delivery</label>
-                                            </div>
+                  <div className="col-50">
+                    <h3>Checkout</h3>
+                    <br />
+                    <label htmlFor="fname">Full Name</label>
+                    <input
+                      type="text"
+                      id="fname"
+                      name="fullName"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                    <label htmlFor="date">Due Date</label>
+                    <input
+                      type="date"
+                      id="date"
+                      name="dueDate"
+                      value={Due_date}
+                      onChange={(e) => setDue_date(e.target.value)}
+                    />
+                    <h3 className="pymnt">Payment</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <input
+                          type="radio"
+                          id="cashOnDel"
+                          name="paymentOption"
+                          value="cashOnDel"
+                          // checked={Payment === 'cashOnDel'}
+                          // onChange={(e) => setPayment('cashOnDel')}
+                        />
+                        <label htmlFor="cashOnDel" style={{ marginLeft: '8px' }}>
+                          Cash on Delivery
+                        </label>
+                      </div>
 
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <input
-                                                    type="radio"
-                                                    id="card"
-                                                    name="paymentOption"
-                                                    value="card"
-                                                    checked={formData.paymentOption === "card"}
-                                                    onChange={handleChange}
-                                                />
-                                                <label htmlFor="card" style={{ marginLeft: '8px' }}>Credit Card</label>
-                                            </div>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <input
+                          type="radio"
+                          id="card"
+                          name="paymentOption"
+                          value="card"
+                          checked={Payment === 'card'}
+                          onChange={(e) => setPayment('card')}
+                        />
+                        <label htmlFor="card" style={{ marginLeft: '8px' }}>
+                          Credit Card
+                        </label>
+                      </div>
 
-                                            {formData.paymentOption === "card" && (
-                                                <div>
-                                                    <label htmlFor="cname">Name on Card</label>
-                                                    <input
-                                                        type="text"
-                                                        id="cname"
-                                                        name="nameOnCard"
-                                                        value={formData.card.nameOnCard}
-                                                        onChange={handleChange}
-                                                    />
-                                                    <label htmlFor="ccnum">Credit card number</label>
-                                                    <input
-                                                        type="text"
-                                                        id="ccnum"
-                                                        name="cardNumber"
-                                                        placeholder="1111-2222-3333-4444"
-                                                        value={formData.card.cardNumber}
-                                                        onChange={handleChange}
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
-                                       
-                                        <input
-                                            type="submit"
-                                            value="Place order"
-                                            className="btn"
-                                        />
-                                    </div>
-
-                                    <div className="col-50">
-                                         <label className='el' htmlFor="email">Email</label>
-                                        <input
-                                            type="text"
-                                            id="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                        />
-                                        <label htmlFor="adr">Delivery Address</label>
-                                        <input
-                                            type="text"
-                                            id="adr"
-                                            name="address"
-                                            value={formData.address}
-                                            onChange={handleChange}
-                                        />
-                                        
-                                    </div>
-                                </div>
-                            </form>
+                      {Payment === 'card' && (
+                        <div>
+                          <label htmlFor="cname">Name on Card</label>
+                          <input
+                            type="text"
+                            id="cname"
+                            name="nameOnCard"
+                            value={nameOnCard}
+                            onChange={(e) => setNameOnCard(e.target.value)}
+                          />
+                          <label htmlFor="ccnum">Credit card number</label>
+                          <input
+                            type="text"
+                            id="ccnum"
+                            name="cardNumber"
+                            placeholder="1111-2222-3333-4444"
+                            value={cardNumber}
+                            onChange={(e) => setCardNumber(e.target.value)}
+                          />
                         </div>
+                      )}
                     </div>
+                    <input type="submit" value="Place order" className="btn" />
+                  </div>
 
-                    <div className="col-25">
-    <div className="container">
-      <h4>
-        Cart
-        <span className="price" style={{ color: 'black' }}>
-          <i className="fa fa-shopping-cart"></i>
-        </span>
-      </h4>
-
-      {product_cake.map(product => (
-      <div key={product._id}>
-        <p>
-          {product.name}
-          <span className="price">${product.price}</span>
-        </p>
-      </div>
-    ))}
-
-    <hr />
-    <p>${totalCartPrice}</p>
-    </div>
-  </div>
-
+                  <div className="col-50">
+                    <label className="el" htmlFor="email">
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="adr">Delivery Address</label>
+                    <input
+                      type="text"
+                      id="adr"
+                      name="address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </div>
                 </div>
+              </form>
             </div>
-            <div className="footercheckout">
-                <ToastContainer />
-                <MiniFooter />
-            </div>
+          </div>
+          <div className="col-25">
+            <div className="container">
+              <h4>
+                Cart
+                <span className="price" style={{ color: 'black' }}>
+                  <i className="fa fa-shopping-cart"></i>
+                </span>
+              </h4>
+
+    {customOrders.length > 0 && (
+      <div>
+        <img src={customOrders[0].product_image} alt="Product" style={{ maxWidth: '100px', maxHeight: '100px' }} />
+        <p>Price: ${customOrders[0].totalPrice}</p>
+        <hr />
+      </div>
+    )}
+    
+  
+  
+
+    
+    <hr />
+       <p>Total Price: ${customOrders.reduce((total, order) => total + order.totalPrice, 0)}</p>
+
+  </div>
+</div>
         </div>
-    );
+      </div>
+      <div className="footercheckout">
+        <ToastContainer />
+        <MiniFooter />
+      </div>
+    </div>
+  );
 };
 
 export default Checkout;
