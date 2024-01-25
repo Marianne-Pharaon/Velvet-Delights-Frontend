@@ -27,7 +27,7 @@ const Checkout = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:8001/checkout/addcheckouts`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/checkout/addcheckouts`, {
         user_id: user_id,
         fullName: name,
         address,
@@ -66,7 +66,7 @@ const Checkout = () => {
 
   const fetchCustomOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:8001/custom-orders/getcustomOrders/${user_id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/custom-orders/getcustomOrders/${user_id}`);
       console.log(response);
       const ordersArray = Array.isArray(response.data) ? response.data : [];
       setCustomOrders(ordersArray);
