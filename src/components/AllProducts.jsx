@@ -34,6 +34,7 @@ const AllProducts = () => {
   }, []);
 
   const handleProductClick = (productId) => {
+    
     history.push(`/Cake/${productId}`);
     localStorage.setItem("productId", productId);
   };

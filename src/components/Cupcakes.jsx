@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import style3 from '../style/AllProducts.css';
 import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
@@ -8,12 +8,13 @@ import axios from 'axios';
 const Cupcakes = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const categoryName = 'cupcakes'; 
+  const categoryName = 'cupcakes';
+  const history = useHistory(); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/getcategory/Cupcakes`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/getcategory/${categoryName}`);
         setProducts(response.data.data);
         console.log(response);
       } catch (error) {
@@ -25,6 +26,13 @@ const Cupcakes = () => {
 
     fetchData();
   }, [categoryName]);
+
+  const handleClick = (productId) => {
+
+    history.push(`/Cupcake/${productId}`);
+    localStorage.setItem("productId", productId);
+
+  };
 
   return (
     <div>
@@ -38,7 +46,7 @@ const Cupcakes = () => {
             <p>Loading...</p>
           ) : products.length > 0 ? (
             products.map((product) => (
-              <div className='row1' key={product._id}>
+              <div className='row1' key={product._id} onClick={() => handleClick(product._id)}>
                 <img src={product.image} className='pimgsize' alt={product.name} />
               </div>
             ))
