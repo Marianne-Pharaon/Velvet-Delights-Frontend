@@ -8,7 +8,7 @@ import { getUserID } from '../Util/GetUsersData';
 import '../style/Checkout.css';
 
 const Checkout = () => {
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [address, setAddress] = useState('');
   const [Due_date, setDue_date] = useState('');
   const [email, setEmail] = useState('');
@@ -21,7 +21,7 @@ const Checkout = () => {
   const handleCheckout = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !address || !Due_date) {
+    if (!fullName || !email || !address || !Due_date) {
       setError('All fields are required');
       return;
     }
@@ -29,7 +29,7 @@ const Checkout = () => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/checkout/addcheckouts`, {
         user_id: user_id,
-        fullName: name,
+        fullName,
         address,
         email,
         Due_date,
@@ -45,7 +45,7 @@ const Checkout = () => {
         toast.success('Order Added Successfully');
 
         console.log('Order added successfully');
-        setName('');
+        setFullName('');
         setEmail('');
         setDue_date('');
         setAddress('');
@@ -66,20 +66,19 @@ const Checkout = () => {
 
   const fetchCustomOrders = async () => {
     try {
+      if (!user_id) {
+        return;
+      }
+  
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/custom-orders/getcustomOrders/${user_id}`);
       console.log(response);
       const ordersArray = Array.isArray(response.data) ? response.data : [];
       setCustomOrders(ordersArray);
     } catch (error) {
       console.error('Error fetching custom orders:', error);
-      // Handle error
-      
     }
   };
-
-  useEffect(() => {
-    fetchCustomOrders(); 
-  }, [user_id]);
+  
 
   return (
     <div className="page">
@@ -98,8 +97,8 @@ const Checkout = () => {
                       type="text"
                       id="fname"
                       name="fullName"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                     />
                     <label htmlFor="date">Due Date</label>
                     <input
@@ -196,14 +195,16 @@ const Checkout = () => {
                   <i className="fa fa-shopping-cart"></i>
                 </span>
               </h4>
+              <div>
+<p>Chocolate cake</p></div>
+              {customOrders.map((order, index) => (
+  <div key={index}>
+    <img src={order.product_image} alt="Product" style={{ maxWidth: '100px', maxHeight: '100px' }} />
+    <p>Price: ${order.totalPrice}</p>
+    <hr />
+  </div>
+))}
 
-    {customOrders.length > 0 && (
-      <div>
-        <img src={customOrders[0].product_image} alt="Product" style={{ maxWidth: '100px', maxHeight: '100px' }} />
-        <p>Price: ${customOrders[0].totalPrice}</p>
-        <hr />
-      </div>
-    )}
     
   
   

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import style3 from '../style/AllProducts.css';
 import MiniFooter from './MiniFooter';
 import NavBar from './NavBar';
@@ -7,8 +8,8 @@ import axios from 'axios';
 const Weddings = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const categoryName = 'weddings'; 
-
+  const categoryName = 'weddings';
+  const history = useHistory(); 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,6 +26,12 @@ const Weddings = () => {
     fetchData();
   }, [categoryName]);
 
+  const handleClick = (productId) => {
+    history.push(`/Cake/${productId}`);
+    localStorage.setItem("productId", productId);
+
+  };
+
   return (
     <div>
       <NavBar />
@@ -37,7 +44,7 @@ const Weddings = () => {
             <p>Loading...</p>
           ) : products.length > 0 ? (
             products.map((product) => (
-              <div className='row1' key={product._id}>
+              <div className='row1' key={product._id} onClick={() => handleClick(product._id)}>
                 <img src={product.image} className='pimgsize' alt={product.name} />
               </div>
             ))

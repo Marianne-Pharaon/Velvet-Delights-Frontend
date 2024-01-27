@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams,useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './NavBar';
 import MiniFooter from './MiniFooter';
@@ -8,25 +8,24 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Toast } from 'bootstrap';
 
-
-
-
-
-
 const Cake = () => {
-  // Retrieve the product ID from the URL
-  const { productId } = useParams();
+  // Get productId from localStorage
+  const productId = localStorage.getItem("productId");
+
+
+  console.log("productId:", productId);
+
   const [product, setProduct] = useState({});
   const [error, setError] = useState(null);
   const history = useHistory();
-  console.log(productId)
-
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/getproducts/${productId}`);
         console.log('Response data:', response.data);
+        console.log(response);
+        console.log("productId:", productId);
 
         setProduct(response.data.data);
         console.log(product);
@@ -36,13 +35,8 @@ const Cake = () => {
       }
     };
 
-
     fetchProduct();
   }, [productId]);
-
-
-  
-
 
   const addToCart = async () => {
     try {
@@ -53,16 +47,14 @@ const Cake = () => {
         image: product.image,
       };
 
-
       localStorage.setItem("product_cake", JSON.stringify(productInfo));
-  
       toast.success('Product added to cart successfully');
-      
     } catch (error) {
       console.error('Error adding product to cart:', error);
       toast.error('Error adding product to cart. Please try again later.');
     }
   };
+
   return (
     <div>
       <NavBar />
